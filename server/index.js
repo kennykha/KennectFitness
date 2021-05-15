@@ -19,4 +19,4 @@ App.get('/test', (req,res) => {
 
 App.listen(3001, () => {
     console.log('Listening on Port 3001')
-})
+});
