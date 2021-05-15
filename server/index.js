@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const App = express();
+const db = require('../database/index');
+
 
 // App.use(express.static(path.join(__dirname, '../', '/build')))
 // App.use(express.static(path.join(__dirname, '../', '/public')))
@@ -14,7 +16,14 @@ App.get('/', (req, res) => {
 
 App.get('/test', (req,res) => {
     console.log('hello')
-    res.status(200).json({test: 1});
+    console.log(db)
+    db.getUsers((err, result) => {
+        if (err) {
+            res.status(404).send('Cannot retrieve users')
+        } else {
+            res.status(200).send(result);
+        }
+    })
 })
 
 App.listen(3001, () => {
