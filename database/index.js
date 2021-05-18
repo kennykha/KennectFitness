@@ -19,8 +19,14 @@ const getUsers = (callback) => {
     })
 }
 
-const testUsers = () => {
-    console.log('test')
+const addUser = (name, callback) => {
+    connection.query(`INSERT INTO USERS (user) VALUES ('${name}')`, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    })
 }
 
-module.exports = {getUsers, testUsers}
+module.exports = {getUsers, addUser}
