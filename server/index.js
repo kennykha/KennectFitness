@@ -20,10 +20,16 @@ App.get('/getUsers', (req,res) => {
     })
 })
 
-// App.get('/:user', (req, res) => {
-//     console.log('User endpoint hit');
-//     res.send();
+// App.get('/addUser', (req,res) => {
+    
 // })
+
+App.get('/user/:name', (req, res) => {
+    console.log(req.params.name);
+    res.send('USER ENDPOINT RES SEND SUCCESS');
+})
+
+
 
 App.listen(3001, () => {
     console.log('Listening on Port 3001')
