@@ -1,6 +1,8 @@
 const UserData = () => {
     return (
-        <div>This is the User Data Component</div>
+    <div>
+        This is the User Data Component
+    </div>
     )
 }
 
