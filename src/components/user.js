@@ -12,7 +12,13 @@ const User = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Submitted')
+        const name = document.getElementById('addUserName').value;
+        axios.put('/addUser', {name: name})
+        .then((success) => {
+            setUsers(success.data);
+            setShowEditForm(false);
+        })
+        .catch((err) => console.log(err))
     }
 
     //On component render, API call to Express Server
@@ -36,7 +42,7 @@ const User = () => {
         <div id='addUser' className='card'>
             {showEditForm ? (
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder ="name"></input>
+                    <input type="text" placeholder ="name" id='addUserName'></input>
                     <input type="submit" style={{ display: "none"}} />
                 </form>
             ) : (
