@@ -38,7 +38,7 @@ App.put('/addUser', (req,res) => {
 })
 
 App.get('/user/:name', (req, res) => {
-    console.log(req.params.name);
+    console.log('/user/:name endpoint reached for: ', req.params.name);
     res.send('USER ENDPOINT RES SEND SUCCESS');
 })
 

@@ -6,20 +6,16 @@ function App() {
   return (
     <Router>
       <Switch>
-      <div className="container">
-        <header>
-          <title>KennectFitness</title>
-        </header>
-        <main className='main'>
-          <h1 className='title'>Kennect<Link to='/'><a href='/'>Fitness</a></Link></h1>
-          <Route exact path='/'>
-            <User />
-          </Route>
-          <Route path='/user/:name'>
-            <UserData />
-          </Route>
-        </main>
-      </div>       
+        <div className="container">
+          <header>
+            <title>KennectFitness</title>
+          </header>
+          <main className='main'>
+            <h1 className='title'>Kennect<Link to='/'><a href='/'>Fitness</a></Link></h1>
+            <Route exact path='/' component={User} />
+            <Route path='/user/:name' component={UserData} />
+          </main>
+        </div>       
       </Switch>
     </Router>
   );
