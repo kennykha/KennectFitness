@@ -39,10 +39,16 @@ App.put('/addUser', (req,res) => {
 
 App.get('/user/:name', (req, res) => {
     console.log('/user/:name endpoint reached for: ', req.params.name);
-    res.send('USER ENDPOINT RES SEND SUCCESS');
+    db.getWorkouts((err, success) => {
+        if (err) {
+            console.log('ENTER ERROR FOR GETWORKOUTS')
+            res.status(400).send('Unable to retrieve workouts');
+        } else {
+            console.log('ENTER SUCCESS FOR GETWORKOUTS')
+            res.status(200).send(success);
+        }
+    })
 })
-
-
 
 App.listen(3001, () => {
     console.log('Listening on Port 3001')

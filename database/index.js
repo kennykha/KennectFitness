@@ -29,4 +29,14 @@ const addUser = (name, callback) => {
     })
 }
 
-module.exports = {getUsers, addUser}
+const getWorkouts = (callback) => {
+    connection.query('SELECT * FROM WORKOUTS', (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    })
+}
+
+module.exports = {getUsers, addUser, getWorkouts}

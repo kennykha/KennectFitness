@@ -1,5 +1,17 @@
+import axios from 'axios';
+import { useEffect, useState} from 'react';
+
 const UserData = (props) => {
+    console.log('Props', props)
     const user = props.match.params.name;
+
+    useEffect(() => {
+        axios.get(`/user/${user}`)
+        .then((success) => {
+            console.log('clicked successfully to get', success)
+        })
+        .catch((err) => console.log(err))
+    }, []);
 
     return (
     <div>

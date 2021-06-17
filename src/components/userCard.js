@@ -6,19 +6,20 @@ const UserCard = ({name}) => {
 
     const clicked = (e) => {
         console.log('clicked', e.target.innerText);
-        axios.get(`/user/${e.target.innerText}`)
-        .then((success) => {
-            console.log('clicked successfully to get', success)
-            setClicked(true);
-        })
-        .catch((err) => console.log(err))
+        // axios.get(`/user/${e.target.innerText}`)
+        // .then((success) => {
+        //     console.log('clicked successfully to get', success)
+        //     setClicked(true);
+        // })
+        setClicked(true);
+        // .catch((err) => console.log(err))
     }
 
     if (name) {
         return (
             <Link to={`/user/${name.user}`} className='card'>
                 <a onClick={(e) => clicked(e)}>
-                    <h1 >{name.user}</h1>
+                    <h1>{name.user}</h1>
                 </a>
             </Link>
         )
