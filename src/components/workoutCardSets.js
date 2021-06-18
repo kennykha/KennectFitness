@@ -1,17 +1,19 @@
-import WorkoutCardReps from './workoutCardReps';
+import WorkoutCardReps from "./workoutCardReps";
 
-const WorkoutCardSet = ({set, currentWorkoutData }) => {
-    console.log('current workoutaaa', currentWorkoutData)
-    return (
-        <tr>
-            <td>Set {set}</td>
-            {currentWorkoutData.map((workout) => {
-                return (
-                    <WorkoutCardReps currentWorkoutData={workout} />
-                )
-            })}
-        </tr>
-    )
-}
+const WorkoutCardSet = ({ set, currentWorkoutData }) => {
+  return (
+    <tr>
+      <td>Set {set}</td>
+      {currentWorkoutData.map((workout, idx) => {
+        return (
+          <WorkoutCardReps
+            key={`${workout}-${idx}`}
+            currentWorkoutData={workout}
+          />
+        );
+      })}
+    </tr>
+  );
+};
 
 export default WorkoutCardSet;

@@ -1,22 +1,25 @@
-import User from './user';
-import UserData from './userData';
-import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import User from "./user";
+import UserData from "./userData";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <div className="container">
-          <header>
-            <title>KennectFitness</title>
-          </header>
-          <main className='main'>
-            <h1 className='title'>Kennect<Link to='/'><a href='/'>Fitness</a></Link></h1>
-            <Route exact path='/' component={User} />
-            <Route path='/user/:name' component={UserData} />
-          </main>
-        </div>       
-      </Switch>
+      <div className="container">
+        <header>
+          <title>KennectFitness</title>
+        </header>
+        <main className="main">
+          <h1 className="title">
+            Kennect
+            <a href="/">Fitness</a>
+          </h1>
+          <Switch>
+            <Route exact path="/" component={User} />
+            <Route path="/user/:name" component={UserData} />
+          </Switch>
+        </main>
+      </div>
     </Router>
   );
 }

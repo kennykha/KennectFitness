@@ -1,13 +1,13 @@
 .App {
-    text-align: center;
-  }
+  text-align: center;
+}
 
 .container {
   min-height: 100vh;
   padding: 0 0.5rem;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
   align-items: center;
   height: 100vh;
 }
