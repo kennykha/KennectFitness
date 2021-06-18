@@ -25,8 +25,20 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "standard",
+      "standard-jsx",
+      "prettier",
+      "prettier/react"
+    ],
+    "ignorePatterns": [
+      "/build",
+      "/dist",
+      "node_modules"
     ]
+  },
+  "standard": {
+    "parser": "babel-eslint"
   },
   "browserslist": {
     "production": [
@@ -40,5 +52,10 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.3.1",
+    "standard": "^16.0.3"
+  }
 }
