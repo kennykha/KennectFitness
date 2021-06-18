@@ -39,12 +39,10 @@ App.put('/addUser', (req,res) => {
 
 App.get('/user/:name', (req, res) => {
     console.log('/user/:name endpoint reached for: ', req.params.name);
-    db.getWorkouts((err, success) => {
+    db.getWorkouts(req.params.name, (err, success) => {
         if (err) {
-            console.log('ENTER ERROR FOR GETWORKOUTS')
             res.status(400).send('Unable to retrieve workouts');
         } else {
-            console.log('ENTER SUCCESS FOR GETWORKOUTS')
             res.status(200).send(success);
         }
     })

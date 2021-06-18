@@ -29,8 +29,8 @@ const addUser = (name, callback) => {
     })
 }
 
-const getWorkouts = (callback) => {
-    connection.query('SELECT * FROM WORKOUTS', (err, result) => {
+const getWorkouts = (name, callback) => {
+    connection.query(`SELECT * FROM WORKOUTS WHERE USER = '${name}'`, (err, result) => {
         if (err) {
             callback(err);
         } else {

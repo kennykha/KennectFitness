@@ -6,13 +6,7 @@ const UserCard = ({name}) => {
 
     const clicked = (e) => {
         console.log('clicked', e.target.innerText);
-        // axios.get(`/user/${e.target.innerText}`)
-        // .then((success) => {
-        //     console.log('clicked successfully to get', success)
-        //     setClicked(true);
-        // })
         setClicked(true);
-        // .catch((err) => console.log(err))
     }
 
     if (name) {
