@@ -1,16 +1,23 @@
 import React from "react";
 
-const SetsForm = ({ sets }) => {
+const SetsForm = ({ sets, onChange }) => {
   return (
     <div>
       {sets.map((set, idx) => {
         return (
           <div
-            key={`${set}-${idx}`}
+            key={`set-${idx}`}
             style={{ display: "flex", alignItems: "center" }}
           >
             Set {idx + 1}
-            <input type="text" placeholder="Reps" value={set} />
+            <input
+              type="text"
+              className="Set"
+              id={idx}
+              placeholder="Reps"
+              value={set}
+              onChange={onChange}
+            />
           </div>
         );
       })}
