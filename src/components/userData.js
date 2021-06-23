@@ -25,6 +25,11 @@ const UserData = (props) => {
     }
   });
 
+  const handleAddWorkout = () => {
+    const modal = document.getElementById("workoutModal");
+    modal.style.display = "block";
+  };
+
   return (
     <div>
       This is the User Data Component for {user}
@@ -37,7 +42,11 @@ const UserData = (props) => {
           />
         );
       })}
-      <div className="dataCard" style={{ width: "50%" }}>
+      <div
+        className="dataCard"
+        style={{ width: "50%", cursor: "pointer" }}
+        onClick={handleAddWorkout}
+      >
         +Add Workout
       </div>
       <AddWorkoutModal />

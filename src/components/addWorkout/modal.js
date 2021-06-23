@@ -76,42 +76,59 @@ const AddWorkoutModal = () => {
     setData(addSet);
   };
 
+  const handleModalClose = () => {
+    const modal = document.getElementById("workoutModal");
+    modal.style.display = "none";
+
+    setData([
+      {
+        date: "",
+        sets: [""],
+      },
+    ]);
+  };
+
   return (
-    <div className="dataCard">
-      <form>
-        <input
-          type="text"
-          onChange={handleNameChange}
-          placeholder="Workout Name"
-          value={name}
-        />
+    <div class="modal" id="workoutModal">
+      <div className="dataCard" id="workoutModalContent">
+        <span class="close" onClick={handleModalClose}>
+          &times;
+        </span>
+        <form>
+          <input
+            type="text"
+            onChange={handleNameChange}
+            placeholder="Workout Name"
+            value={name}
+          />
 
-        {data.map(({ date, sets }, idx) => {
-          return (
-            <div key={idx}>
-              <DateForm
-                date={date}
-                onChange={(e) => handleDataChange(e, idx)}
-              />
-              <SetsForm
-                sets={sets}
-                onChange={(e) => handleDataChange(e, idx)}
-              />
-              <button type="button" onClick={() => handleSetAddition(idx)}>
-                Add Set
-              </button>
-              <button type="button" onClick={() => handleDateDeletion(idx)}>
-                Delete Date
-              </button>
-            </div>
-          );
-        })}
+          {data.map(({ date, sets }, idx) => {
+            return (
+              <div key={idx}>
+                <DateForm
+                  date={date}
+                  onChange={(e) => handleDataChange(e, idx)}
+                />
+                <SetsForm
+                  sets={sets}
+                  onChange={(e) => handleDataChange(e, idx)}
+                />
+                <button type="button" onClick={() => handleSetAddition(idx)}>
+                  Add Set
+                </button>
+                <button type="button" onClick={() => handleDateDeletion(idx)}>
+                  Delete Date
+                </button>
+              </div>
+            );
+          })}
 
-        <button type="button" onClick={handleDateAddition}>
-          Add Date
-        </button>
-        <button type="submit">Submit</button>
-      </form>
+          <button type="button" onClick={handleDateAddition}>
+            Add Date
+          </button>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 };
