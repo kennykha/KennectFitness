@@ -6,6 +6,7 @@ const SetsForm = ({ sets, onChange }) => {
       {sets.map((set, idx) => {
         return (
           <div
+            className="set-info"
             key={`set-${idx}`}
             style={{ display: "flex", alignItems: "center" }}
           >

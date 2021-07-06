@@ -1,9 +1,9 @@
 import { useState } from "react";
-
 import DateForm from "./dateForm";
 import SetsForm from "./setsForm";
+import axios from "axios";
 
-const AddWorkoutModal = () => {
+const AddWorkoutModal = ({ user }) => {
   const [name, setName] = useState("");
   const [data, setData] = useState([
     {
@@ -36,7 +36,6 @@ const AddWorkoutModal = () => {
             }
             // Should return updateSetRecord = ['5x10']
           });
-          console.log(updateSetRecord);
           return { ...record, sets: updateSetRecord };
           // Should return {date: "", sets:['5x10']}
         } else {
@@ -88,13 +87,28 @@ const AddWorkoutModal = () => {
     ]);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(user, name, data);
+    axios
+      .post("/addWorkoutData", {
+        user: user,
+        workoutData: {
+          workoutName: name,
+          data: data,
+        },
+      })
+      .then((success) => console.log(success))
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <div class="modal" id="workoutModal">
+    <div className="modal" id="workoutModal">
       <div className="dataCard" id="workoutModalContent">
-        <span class="close" onClick={handleModalClose}>
+        <span className="close" onClick={handleModalClose}>
           &times;
         </span>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             onChange={handleNameChange}
@@ -104,7 +118,7 @@ const AddWorkoutModal = () => {
 
           {data.map(({ date, sets }, idx) => {
             return (
-              <div key={idx}>
+              <div key={idx} className="date-rep-container">
                 <DateForm
                   date={date}
                   onChange={(e) => handleDataChange(e, idx)}

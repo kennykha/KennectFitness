@@ -14,7 +14,7 @@ const User = () => {
     e.preventDefault();
     const name = document.getElementById("addUserName").value;
     axios
-      .put("/addUser", { name: name })
+      .post("/addUser", { name: name })
       .then((success) => {
         setUsers(success.data);
         setShowEditForm(false);

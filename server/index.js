@@ -36,6 +36,20 @@ App.put("/addUser", (req, res) => {
   });
 });
 
+App.post("/addWorkoutData", (req, res) => {
+  const { user, workoutData } = req.body;
+  const { workoutName, data } = workoutData;
+  db.addWorkout(user, workoutName, data, (err, success) => {
+    if (err) {
+      console.log(err);
+      res.status(404).send("Unable to add workout");
+    } else {
+      res.status(200).send(success);
+    }
+  });
+  res.status(200).send("Testing");
+});
+
 App.get("/user/:name", (req, res) => {
   console.log("/user/:name endpoint reached for: ", req.params.name);
   db.getWorkouts(req.params.name, (err, success) => {

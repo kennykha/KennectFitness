@@ -49,7 +49,7 @@ const UserData = (props) => {
       >
         +Add Workout
       </div>
-      <AddWorkoutModal />
+      <AddWorkoutModal user={user} />
     </div>
   );
 };

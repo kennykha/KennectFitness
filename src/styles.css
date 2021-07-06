@@ -141,3 +141,12 @@ input {
   text-decoration: none;
   cursor: pointer;
 }
+
+.date-rep-container {
+  border: 2px solid rgb(121, 121, 121);
+  margin: 5px;
+}
+
+.set-info {
+  font-size: 20px;
+}
