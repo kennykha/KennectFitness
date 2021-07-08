@@ -98,7 +98,7 @@ const AddWorkoutModal = ({ user }) => {
           data: data,
         },
       })
-      .then((success) => console.log(success))
+      .then((success) => handleModalClose())
       .catch((err) => console.log(err));
   };
 

@@ -9,6 +9,7 @@ const WorkoutCardSet = ({ set, currentWorkoutData }) => {
           <WorkoutCardReps
             key={`${workout}-${idx}`}
             currentWorkoutData={workout}
+            set={set}
           />
         );
       })}

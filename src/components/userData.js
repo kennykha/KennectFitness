@@ -13,6 +13,7 @@ const UserData = (props) => {
     axios
       .get(`/user/${user}`)
       .then((success) => {
+        console.log(success);
         setWorkout(success.data);
       })
       .catch((err) => console.log(err));

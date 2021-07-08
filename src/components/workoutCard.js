@@ -16,6 +16,19 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData }) => {
     return numberOfSets;
   };
 
+  const uniqueDates = () => {
+    const numberOfDates = [];
+    allWorkoutData.forEach((workout) => {
+      if (workout.workout === currentWorkout) {
+        if (!numberOfDates.includes(workout.date)) {
+          numberOfDates.push(workout.date);
+        }
+      }
+    });
+
+    return numberOfDates;
+  };
+
   const mapCurrentWorkout = () => {
     const currentWorkoutData = [];
     allWorkoutData.forEach((workout) => {
@@ -28,6 +41,7 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData }) => {
   };
 
   const numberOfSets = uniqueSets();
+  const numberOfDates = uniqueDates();
   const currentWorkoutData = mapCurrentWorkout();
 
   return (
@@ -40,12 +54,9 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData }) => {
       <tbody>
         <tr>
           <td />
-          {currentWorkoutData.map((workout) => {
+          {numberOfDates.map((date) => {
             return (
-              <WorkoutCardDate
-                key={`${currentWorkout}-${workout.date}`}
-                date={workout.date}
-              />
+              <WorkoutCardDate key={`${currentWorkout}-${date}`} date={date} />
             );
           })}
         </tr>
