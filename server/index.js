@@ -50,6 +50,17 @@ App.post("/addWorkoutData", (req, res) => {
   res.status(200).send("Testing");
 });
 
+App.post("/editWorkoutData", (req, res) => {
+  const { id, data } = req.body;
+  db.editWorkout(id, data, (err, success) => {
+    if (err) {
+      res.status(404).send('Unable to edit workout data')
+    } else {
+      res.status(200).send(success);
+    }
+  })
+})
+
 App.get("/user/:name", (req, res) => {
   console.log("/user/:name endpoint reached for: ", req.params.name);
   db.getWorkouts(req.params.name, (err, success) => {
