@@ -2,6 +2,7 @@ import WorkoutCardDate from "./workoutCardDate";
 import WorkoutCardSet from "./workoutCardSets";
 
 const WorkoutCard = ({ currentWorkout, allWorkoutData }) => {
+  // console.log(allWorkoutData)
   const uniqueSets = () => {
     const numberOfSets = [];
     allWorkoutData.forEach((workout) => {

@@ -88,8 +88,8 @@ const AddWorkoutModal = ({ user }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(user, name, data);
+    // e.preventDefault();
+    // console.log(user, name, data);
     axios
       .post("/addWorkoutData", {
         user: user,
