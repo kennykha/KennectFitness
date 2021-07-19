@@ -90,6 +90,26 @@ const AddWorkoutModal = ({ user }) => {
   const handleSubmit = (e) => {
     // e.preventDefault();
     // console.log(user, name, data);
+
+    // Determine longest set and fill others will null
+    let longestSet = 0;
+    data.forEach((record) => {
+      if (record.sets.length > longestSet) {
+        longestSet = record.sets.length;
+      }
+    });
+
+    const setDataPlaceholder = data.map((record) => {
+      while (record.sets.length !== longestSet) {
+        record.sets.push("null");
+      }
+
+      return record;
+    });
+
+    setData(setDataPlaceholder);
+
+    console.log("Longest set", longestSet);
     axios
       .post("/addWorkoutData", {
         user: user,

@@ -64,14 +64,17 @@ const addWorkout = (user, workoutName, data, callback) => {
 };
 
 const editWorkout = (id, repInfo, callback) => {
-  console.log(id, repInfo)
-  connection.query(`UPDATE workouts SET rep_info = '${repInfo}' WHERE id = ${id}`, (err, result) => {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null, result);
+  console.log(id, repInfo);
+  connection.query(
+    `UPDATE workouts SET rep_info = '${repInfo}' WHERE id = ${id}`,
+    (err, result) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, result);
+      }
     }
-  })
-}
+  );
+};
 
 module.exports = { getUsers, addUser, getWorkouts, addWorkout, editWorkout };
