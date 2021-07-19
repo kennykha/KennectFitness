@@ -164,3 +164,7 @@ input {
   margin: 0;
   width: 25px;
 }
+
+td {
+  width: 40px;
+}

@@ -47,14 +47,23 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
   const currentWorkoutData = mapCurrentWorkout();
 
   const handleSetAddition = () => {
-    // console.log(numberOfSets);
-    // console.log(numberOfDates);
     axios
       .post("/addSet", {
         user: user,
         dates: numberOfDates,
         currentWorkout: currentWorkout,
         setInfo: numberOfSets.length + 1,
+      })
+      .then((success) => console.log(success))
+      .catch((err) => console.log(err));
+  };
+
+  const handleDateAddition = () => {
+    axios
+      .post("/addDate", {
+        user: user,
+        currentWorkout: currentWorkout,
+        sets: numberOfSets,
       })
       .then((success) => console.log(success))
       .catch((err) => console.log(err));
@@ -97,7 +106,9 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
         <form onSubmit={handleSetAddition}>
           <button type="submit">Add Set</button>
         </form>
-        <button>Add Date</button>
+        <form onSubmit={handleDateAddition}>
+          <button type="submit">Add Date</button>
+        </form>
       </div>
     </div>
   );
