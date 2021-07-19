@@ -72,6 +72,17 @@ App.post("/editDate", (req, res) => {
   });
 });
 
+App.post("/addSet", (req, res) => {
+  const { user, dates, currentWorkout, setInfo } = req.body;
+  db.addSet(user, dates, currentWorkout, setInfo, (err, success) => {
+    if (err) {
+      res.status(404).send("Unable to add new set");
+    } else {
+      res.status(200).send(success);
+    }
+  });
+});
+
 App.get("/user/:name", (req, res) => {
   console.log("/user/:name endpoint reached for: ", req.params.name);
   db.getWorkouts(req.params.name, (err, success) => {

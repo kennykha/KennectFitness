@@ -1,5 +1,6 @@
 import WorkoutCardDate from "./workoutCardDate";
 import WorkoutCardSet from "./workoutCardSets";
+import axios from "axios";
 
 const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
   // console.log(allWorkoutData)
@@ -45,38 +46,60 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
   const numberOfDates = uniqueDates();
   const currentWorkoutData = mapCurrentWorkout();
 
+  const handleSetAddition = () => {
+    // console.log(numberOfSets);
+    // console.log(numberOfDates);
+    axios
+      .post("/addSet", {
+        user: user,
+        dates: numberOfDates,
+        currentWorkout: currentWorkout,
+        setInfo: numberOfSets.length + 1,
+      })
+      .then((success) => console.log(success))
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <table className="dataCard">
-      <thead>
-        <tr>
-          <th colSpan="3">{currentWorkout}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td />
-          {numberOfDates.map((date) => {
+    <div className="dataCard">
+      <table className="dataCard">
+        <thead>
+          <tr>
+            <th colSpan="3">{currentWorkout}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td />
+            {numberOfDates.map((date) => {
+              return (
+                <WorkoutCardDate
+                  key={`${currentWorkout}-${date}`}
+                  date={date}
+                  user={user}
+                  currentWorkout={currentWorkout}
+                />
+              );
+            })}
+          </tr>
+          {numberOfSets.map((set) => {
             return (
-              <WorkoutCardDate
-                key={`${currentWorkout}-${date}`}
-                date={date}
-                user={user}
-                currentWorkout={currentWorkout}
+              <WorkoutCardSet
+                key={`${currentWorkout}-${set}`}
+                set={set}
+                currentWorkoutData={currentWorkoutData}
               />
             );
           })}
-        </tr>
-        {numberOfSets.map((set) => {
-          return (
-            <WorkoutCardSet
-              key={`${currentWorkout}-${set}`}
-              set={set}
-              currentWorkoutData={currentWorkoutData}
-            />
-          );
-        })}
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+      <div>
+        <form onSubmit={handleSetAddition}>
+          <button type="submit">Add Set</button>
+        </form>
+        <button>Add Date</button>
+      </div>
+    </div>
   );
 };
 

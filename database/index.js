@@ -90,6 +90,20 @@ const editDate = (user, date, currentWorkout, previousDate, callback) => {
   );
 };
 
+const addSet = (user, dates, currentWorkout, setInfo, callback) => {
+  connection.query(
+    `INSERT INTO workouts (user, workout, date, rep_info, current_set) VALUES ?`,
+    [dates.map((date) => [user, currentWorkout, date, "null", setInfo])],
+    (err, result) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, result);
+      }
+    }
+  );
+};
+
 module.exports = {
   getUsers,
   addUser,
@@ -97,4 +111,5 @@ module.exports = {
   addWorkout,
   editWorkout,
   editDate,
+  addSet,
 };
