@@ -13,7 +13,6 @@ const UserData = (props) => {
     axios
       .get(`/user/${user}`)
       .then((success) => {
-        console.log(success);
         setWorkout(success.data);
       })
       .catch((err) => console.log(err));
@@ -40,6 +39,7 @@ const UserData = (props) => {
             key={currentWorkout}
             currentWorkout={currentWorkout}
             allWorkoutData={workout}
+            user={user}
           />
         );
       })}

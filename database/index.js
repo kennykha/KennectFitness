@@ -64,7 +64,6 @@ const addWorkout = (user, workoutName, data, callback) => {
 };
 
 const editWorkout = (id, repInfo, callback) => {
-  console.log(id, repInfo);
   connection.query(
     `UPDATE workouts SET rep_info = '${repInfo}' WHERE id = ${id}`,
     (err, result) => {
@@ -77,4 +76,25 @@ const editWorkout = (id, repInfo, callback) => {
   );
 };
 
-module.exports = { getUsers, addUser, getWorkouts, addWorkout, editWorkout };
+const editDate = (user, date, currentWorkout, previousDate, callback) => {
+  console.log(user, date, currentWorkout, previousDate);
+  connection.query(
+    `UPDATE workouts SET date = '${date}' WHERE user = '${user}' AND workout = '${currentWorkout}' AND date = '${previousDate}'`,
+    (err, result) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, result);
+      }
+    }
+  );
+};
+
+module.exports = {
+  getUsers,
+  addUser,
+  getWorkouts,
+  addWorkout,
+  editWorkout,
+  editDate,
+};

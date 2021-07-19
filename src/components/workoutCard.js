@@ -1,7 +1,7 @@
 import WorkoutCardDate from "./workoutCardDate";
 import WorkoutCardSet from "./workoutCardSets";
 
-const WorkoutCard = ({ currentWorkout, allWorkoutData }) => {
+const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
   // console.log(allWorkoutData)
   const uniqueSets = () => {
     const numberOfSets = [];
@@ -57,7 +57,12 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData }) => {
           <td />
           {numberOfDates.map((date) => {
             return (
-              <WorkoutCardDate key={`${currentWorkout}-${date}`} date={date} />
+              <WorkoutCardDate
+                key={`${currentWorkout}-${date}`}
+                date={date}
+                user={user}
+                currentWorkout={currentWorkout}
+              />
             );
           })}
         </tr>

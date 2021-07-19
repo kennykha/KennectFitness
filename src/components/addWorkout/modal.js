@@ -100,6 +100,18 @@ const AddWorkoutModal = ({ user }) => {
     });
 
     const setDataPlaceholder = data.map((record) => {
+      record.sets = record.sets.map((set) => {
+        if (set === "") {
+          return "null";
+        } else {
+          return set;
+        }
+      });
+
+      if (record.date === "") {
+        record.date = "null";
+      }
+
       while (record.sets.length !== longestSet) {
         record.sets.push("null");
       }
