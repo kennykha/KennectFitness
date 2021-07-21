@@ -93,7 +93,7 @@ const editDate = (user, date, currentWorkout, previousDate, callback) => {
 const addSet = (user, dates, currentWorkout, setInfo, callback) => {
   connection.query(
     `INSERT INTO workouts (user, workout, date, rep_info, current_set) VALUES ?`,
-    [dates.map((date) => [user, currentWorkout, date, "null", setInfo])],
+    [dates.map((date) => [user, currentWorkout, date, "   ", setInfo])],
     (err, result) => {
       if (err) {
         callback(err);
@@ -108,7 +108,7 @@ const addDate = (user, currentWorkout, sets, callback) => {
   console.log(sets);
   connection.query(
     `INSERT INTO workouts (user, workout, date, rep_info, current_set) VALUES ?`,
-    [sets.map((set) => [user, currentWorkout, "null", "null", set])],
+    [sets.map((set) => [user, currentWorkout, "   ", "   ", set])],
     (err, result) => {
       if (err) {
         callback(err);

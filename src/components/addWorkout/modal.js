@@ -102,18 +102,18 @@ const AddWorkoutModal = ({ user }) => {
     const setDataPlaceholder = data.map((record) => {
       record.sets = record.sets.map((set) => {
         if (set === "") {
-          return "null";
+          return "   ";
         } else {
           return set;
         }
       });
 
       if (record.date === "") {
-        record.date = "null";
+        record.date = "   ";
       }
 
       while (record.sets.length !== longestSet) {
-        record.sets.push("null");
+        record.sets.push("   ");
       }
 
       return record;
