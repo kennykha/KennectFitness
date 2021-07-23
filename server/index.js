@@ -89,6 +89,7 @@ App.post("/addDate", (req, res) => {
     if (err) {
       res.status(404).send("Unable to add new date");
     } else {
+      console.log(success);
       res.status(200).send(success);
     }
   });

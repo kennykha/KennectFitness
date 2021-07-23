@@ -6,7 +6,7 @@ const WorkoutCardDate = ({ date, user, currentWorkout }) => {
   const [currentDate, handleCurrentDate] = useState(date);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const dateInfo = document.getElementById("date-info").value;
     axios
       .post("/editDate", {

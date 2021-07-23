@@ -1,11 +1,14 @@
+import { useState } from "react";
 import WorkoutCardDate from "./workoutCardDate";
 import WorkoutCardSet from "./workoutCardSets";
 import axios from "axios";
 
 const WorkoutCard = ({ currentWorkout, currentWorkoutData, user }) => {
+  const [workoutData, handleWorkoutData] = useState(currentWorkoutData);
+  console.log(handleWorkoutData);
   const uniqueSets = () => {
     const numberOfSets = [];
-    currentWorkoutData.forEach((workout) => {
+    workoutData.forEach((workout) => {
       if (!numberOfSets.includes(workout.current_set)) {
         numberOfSets.push(workout.current_set);
       }
@@ -17,7 +20,7 @@ const WorkoutCard = ({ currentWorkout, currentWorkoutData, user }) => {
 
   const uniqueDates = () => {
     const numberOfDates = [];
-    currentWorkoutData.forEach((workout) => {
+    workoutData.forEach((workout) => {
       if (!numberOfDates.includes(workout.date)) {
         numberOfDates.push(workout.date);
       }
@@ -29,7 +32,8 @@ const WorkoutCard = ({ currentWorkout, currentWorkoutData, user }) => {
   const numberOfSets = uniqueSets();
   const numberOfDates = uniqueDates();
 
-  const handleSetAddition = () => {
+  const handleSetAddition = (e) => {
+    e.preventDefault();
     axios
       .post("/addSet", {
         user: user,
@@ -37,19 +41,25 @@ const WorkoutCard = ({ currentWorkout, currentWorkoutData, user }) => {
         currentWorkout: currentWorkout,
         setInfo: numberOfSets.length + 1,
       })
-      .then((success) => console.log(success))
+      .then((success) => handleWorkoutData(success.data))
       .catch((err) => console.log(err));
   };
 
-  const handleDateAddition = () => {
-    axios
-      .post("/addDate", {
-        user: user,
-        currentWorkout: currentWorkout,
-        sets: numberOfSets,
-      })
-      .then((success) => console.log(success))
-      .catch((err) => console.log(err));
+  const handleDateAddition = (e) => {
+    if (workoutData[workoutData.length - 1].date === "   ") {
+      e.preventDefault();
+      alert("Please add a date to your previous workout first");
+    } else {
+      e.preventDefault(e);
+      axios
+        .post("/addDate", {
+          user: user,
+          currentWorkout: currentWorkout,
+          sets: numberOfSets,
+        })
+        .then((success) => handleWorkoutData(success.data))
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -78,7 +88,7 @@ const WorkoutCard = ({ currentWorkout, currentWorkoutData, user }) => {
             <WorkoutCardSet
               key={`${currentWorkout}-${set}`}
               set={set}
-              currentWorkoutData={currentWorkoutData}
+              currentWorkoutData={workoutData}
             />
           );
         })}

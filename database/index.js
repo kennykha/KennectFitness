@@ -94,26 +94,45 @@ const addSet = (user, dates, currentWorkout, setInfo, callback) => {
   connection.query(
     `INSERT INTO workouts (user, workout, date, rep_info, current_set) VALUES ?`,
     [dates.map((date) => [user, currentWorkout, date, "   ", setInfo])],
-    (err, result) => {
+    (err) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, result);
+        connection.query(
+          `SELECT * FROM WORKOUTS where user = '${user}' AND workout = '${currentWorkout}'`,
+          (err, result) => {
+            if (err) {
+              console.log(err);
+              callback(err);
+            } else {
+              console.log("made it into select all");
+              callback(null, result);
+            }
+          }
+        );
       }
     }
   );
 };
 
 const addDate = (user, currentWorkout, sets, callback) => {
-  console.log(sets);
   connection.query(
     `INSERT INTO workouts (user, workout, date, rep_info, current_set) VALUES ?`,
     [sets.map((set) => [user, currentWorkout, "   ", "   ", set])],
-    (err, result) => {
+    (err) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, result);
+        connection.query(
+          `SELECT * FROM WORKOUTS where user = '${user}' AND workout = '${currentWorkout}'`,
+          (err, result) => {
+            if (err) {
+              callback(err);
+            } else {
+              callback(null, result);
+            }
+          }
+        );
       }
     }
   );
