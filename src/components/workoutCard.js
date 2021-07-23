@@ -2,15 +2,12 @@ import WorkoutCardDate from "./workoutCardDate";
 import WorkoutCardSet from "./workoutCardSets";
 import axios from "axios";
 
-const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
-  // console.log(allWorkoutData)
+const WorkoutCard = ({ currentWorkout, currentWorkoutData, user }) => {
   const uniqueSets = () => {
     const numberOfSets = [];
-    allWorkoutData.forEach((workout) => {
-      if (workout.workout === currentWorkout) {
-        if (!numberOfSets.includes(workout.current_set)) {
-          numberOfSets.push(workout.current_set);
-        }
+    currentWorkoutData.forEach((workout) => {
+      if (!numberOfSets.includes(workout.current_set)) {
+        numberOfSets.push(workout.current_set);
       }
     });
 
@@ -20,31 +17,17 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
 
   const uniqueDates = () => {
     const numberOfDates = [];
-    allWorkoutData.forEach((workout) => {
-      if (workout.workout === currentWorkout) {
-        if (!numberOfDates.includes(workout.date)) {
-          numberOfDates.push(workout.date);
-        }
+    currentWorkoutData.forEach((workout) => {
+      if (!numberOfDates.includes(workout.date)) {
+        numberOfDates.push(workout.date);
       }
     });
 
     return numberOfDates;
   };
 
-  const mapCurrentWorkout = () => {
-    const currentWorkoutData = [];
-    allWorkoutData.forEach((workout) => {
-      if (workout.workout === currentWorkout) {
-        currentWorkoutData.push(workout);
-      }
-    });
-
-    return currentWorkoutData;
-  };
-
   const numberOfSets = uniqueSets();
   const numberOfDates = uniqueDates();
-  const currentWorkoutData = mapCurrentWorkout();
 
   const handleSetAddition = () => {
     axios
@@ -70,47 +53,49 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
   };
 
   return (
-    <div className="dataCard">
-      <table className="dataCard">
-        <thead>
-          <tr>
-            <th colSpan="3">{currentWorkout}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td />
-            {numberOfDates.map((date) => {
-              return (
-                <WorkoutCardDate
-                  key={`${currentWorkout}-${date}`}
-                  date={date}
-                  user={user}
-                  currentWorkout={currentWorkout}
-                />
-              );
-            })}
-          </tr>
-          {numberOfSets.map((set) => {
+    <table className="dataCard">
+      <thead>
+        <tr>
+          <th colSpan="3">{currentWorkout}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td />
+          {numberOfDates.map((date) => {
             return (
-              <WorkoutCardSet
-                key={`${currentWorkout}-${set}`}
-                set={set}
-                currentWorkoutData={currentWorkoutData}
+              <WorkoutCardDate
+                key={`${currentWorkout}-${date}`}
+                date={date}
+                user={user}
+                currentWorkout={currentWorkout}
               />
             );
           })}
-        </tbody>
-      </table>
-      <div>
-        <form onSubmit={handleSetAddition}>
-          <button type="submit">Add Set</button>
-        </form>
-        <form onSubmit={handleDateAddition}>
-          <button type="submit">Add Date</button>
-        </form>
-      </div>
-    </div>
+        </tr>
+        {numberOfSets.map((set) => {
+          return (
+            <WorkoutCardSet
+              key={`${currentWorkout}-${set}`}
+              set={set}
+              currentWorkoutData={currentWorkoutData}
+            />
+          );
+        })}
+        <tr>
+          <td>
+            <form onSubmit={handleSetAddition}>
+              <button type="submit">Add Set</button>
+            </form>
+          </td>
+          <td>
+            <form onSubmit={handleDateAddition}>
+              <button type="submit">Add Date</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 

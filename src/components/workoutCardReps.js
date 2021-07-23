@@ -4,7 +4,7 @@ import axios from "axios";
 const WorkoutCardReps = ({ currentWorkoutData, set }) => {
   const [showEditForm, handleShowEditForm] = useState(false);
   const [repData, handleRepData] = useState(currentWorkoutData.rep_info);
-  const [repValue, handleRepValue] = useState("");
+  // const [repValue, handleRepValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,13 +16,9 @@ const WorkoutCardReps = ({ currentWorkoutData, set }) => {
       })
       .then((success) => {
         handleShowEditForm(false);
-        handleRepData(repValue);
+        handleRepData(repInfo);
       })
       .catch((err) => console.log(err));
-  };
-
-  const handleRepValueChange = (e) => {
-    handleRepValue(e.target.value);
   };
 
   if (currentWorkoutData.current_set === set) {
@@ -42,13 +38,7 @@ const WorkoutCardReps = ({ currentWorkoutData, set }) => {
       return (
         <td>
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder={repData}
-              id="rep-info"
-              value={repValue}
-              onChange={handleRepValueChange}
-            />
+            <input type="text" placeholder={repData} id="rep-info" />
             <input type="submit" style={{ display: "none" }} />
           </form>
         </td>

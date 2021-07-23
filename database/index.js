@@ -76,10 +76,10 @@ const editWorkout = (id, repInfo, callback) => {
   );
 };
 
-const editDate = (user, date, currentWorkout, previousDate, callback) => {
-  console.log(user, date, currentWorkout, previousDate);
+const editDate = (user, date, currentWorkout, currentDate, callback) => {
+  console.log(user, date, currentWorkout, currentDate);
   connection.query(
-    `UPDATE workouts SET date = '${date}' WHERE user = '${user}' AND workout = '${currentWorkout}' AND date = '${previousDate}'`,
+    `UPDATE workouts SET date = '${date}' WHERE user = '${user}' AND workout = '${currentWorkout}' AND date = '${currentDate}'`,
     (err, result) => {
       if (err) {
         callback(err);
