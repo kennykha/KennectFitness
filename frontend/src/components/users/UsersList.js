@@ -5,7 +5,7 @@ import UserCard from "./UserCard";
 
 const UsersList = ({ users }) => {
   const list = React.useMemo(() => {
-    users.filter((user) => !!user);
+    return users.filter((user) => !!user);
   }, []);
 
   return (
