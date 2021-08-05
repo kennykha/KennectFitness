@@ -2,9 +2,19 @@ import React, { useState } from "react";
 
 import UsersList from "./UsersList";
 import UserAddForm from "./UserAddForm";
-import AddUserButton from "./AddUserButton";
+import AddButton from "./AddButton";
 
-export default function Users({ users }) {
+/*
+  - we moved most of the actions logic to the actions folder
+  - generally in components we'd try to keep the components are pure as possible
+  - it's more "modular" if you keep particular components in their own files
+  - each component is responsible for its own logic
+    - see UserAddForm.js for more info
+  - this can be refactored further, but I'll let you figure it out
+*/
+
+export default function Users() {
+  // since we show/hide the "add user button" here, we can use local state here
   const [showEditForm, setShowEditForm] = useState(false);
 
   return (
@@ -14,7 +24,7 @@ export default function Users({ users }) {
         {showEditForm ? (
           <UserAddForm />
         ) : (
-          <AddUserButton onClick={() => setShowEditForm(true)} />
+          <AddButton onClick={() => setShowEditForm(true)} />
         )}
       </div>
     </div>

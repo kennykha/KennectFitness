@@ -5,6 +5,9 @@ import { fetchUsers } from "../actions/users";
 
 import UsersList from "../components/usersList";
 
+/* this page is somewhat unnecessary, but it's usually nice to keep the "overarching"
+ logic like fetching all users here. Generally want to do this once per refresh */
+
 const Users = ({ fetchUsers }) => {
   useEffect(() => {
     fetchUsers();

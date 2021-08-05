@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import "./styles.css";
 
+// need to add store to redux's Provider component
 import configureStore from "./store";
 
 ReactDOM.render(
