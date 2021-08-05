@@ -8,6 +8,8 @@ App.get("/", (req, res) => {
   res.status(200).send("Root end point hit");
 });
 
+// TODO: familiarize yourself with error codes (https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
 // endpoint naming best practices https://restfulapi.net/resource-naming/
 App.get("/users", (req, res) => {
   console.log("Hit getUsers endpoint");
