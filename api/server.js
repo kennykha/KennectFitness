@@ -8,7 +8,8 @@ App.get("/", (req, res) => {
   res.status(200).send("Root end point hit");
 });
 
-App.get("/getUsers", (req, res) => {
+// endpoint naming best practices https://restfulapi.net/resource-naming/
+App.get("/users", (req, res) => {
   console.log("Hit getUsers endpoint");
   db.getUsers((err, result) => {
     if (err) {
@@ -19,7 +20,7 @@ App.get("/getUsers", (req, res) => {
   });
 });
 
-App.put("/addUser", (req, res) => {
+App.put("/users/add", (req, res) => {
   console.log(req.body.name);
   db.addUser(req.body.name, (err, success) => {
     if (err) {
@@ -36,6 +37,7 @@ App.put("/addUser", (req, res) => {
   });
 });
 
+// App.post("/users/{userId}/add", (req, res) => {
 App.post("/addWorkoutData", (req, res) => {
   const { user, workoutData } = req.body;
   const { workoutName, data } = workoutData;
@@ -50,6 +52,7 @@ App.post("/addWorkoutData", (req, res) => {
   res.status(200).send("Testing");
 });
 
+// App.post("/users/{userId}/edit", (req, res) => {
 App.post("/editWorkoutData", (req, res) => {
   const { id, data } = req.body;
   db.editWorkout(id, data, (err, success) => {

@@ -17,7 +17,7 @@ export const fetchUsers = () => (dispatch) => {
   dispatch({ type: FETCH_USERS });
 
   axios
-    .get("/getUsers")
+    .get("/users")
     .then((response) => {
       // This is connected to reducers/users
       console.log("Response from server/db: ", response.data);
@@ -32,7 +32,7 @@ export const fetchUsers = () => (dispatch) => {
 export const addUser = (name) => (dispatch) => {
   dispatch({ type: ADD_USER });
   axios
-    .post("/addUser", { name })
+    .post("/users/add", { name })
     .then((response) => {
       dispatch({ type: ADD_USER_SUCCESS, payload: response.data });
     })
