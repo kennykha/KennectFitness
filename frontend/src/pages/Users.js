@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { fetchUsers } from "../actions/users";
 
-import UsersList from "../components/users";
+import UsersList from "../components/usersList";
 
 const Users = ({ fetchUsers }) => {
   useEffect(() => {

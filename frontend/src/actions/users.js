@@ -1,21 +1,37 @@
 import axios from "axios";
 
+export const FETCH_USERS = "FETCH_USERS";
+export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+export const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
+
+export const ADD_USER = "ADD_USER";
+export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
+export const ADD_USER_FAILURE = "ADD_USER_FAILURE";
+
+// if possible, keep all the action logic for users here
 export const fetchUsers = () => (dispatch) => {
+  dispatch({ type: FETCH_USERS });
   axios
     .get("/getUsers")
     .then((response) => {
-      // console.log("Response from server/db: ", response.data);
-      // setUsers(response.data);
+      console.log("Response from server/db: ", response.data);
+      dispatch({ type: FETCH_USERS_SUCCESS, payload: response.data });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: FETCH_USERS_FAILURE, err });
+    });
 };
 
 export const addUser = (name) => (dispatch) => {
+  dispatch({ type: ADD_USER });
   axios
     .post("/addUser", { name })
-    .then((success) => {
-      // setUsers(success.data);
-      // setShowEditForm(false);
+    .then((response) => {
+      dispatch({ type: ADD_USER_SUCCESS, payload: response.data });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: ADD_USER_FAILURE, err });
+    });
 };
