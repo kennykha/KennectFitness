@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserCard from "./userCard";
 
-const User = () => {
+const Users = () => {
   const [users, setUsers] = useState([]);
   const [showEditForm, setShowEditForm] = useState(false);
 
@@ -57,4 +57,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Users;

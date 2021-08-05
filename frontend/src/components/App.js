@@ -1,4 +1,4 @@
-import User from "./user";
+import User from "./users";
 import UserData from "./userData";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
