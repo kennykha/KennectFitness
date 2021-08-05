@@ -1,0 +1,43 @@
+{
+  "name": "kennectfitness-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "web-vitals": "^1.1.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard",
+      "standard-jsx",
+      "prettier"
+    ],
+    "ignorePatterns": [
+      "node_modules"
+    ]
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.15.0",
+    "prettier": "^2.2.1",
+    "standard": "^14.3.4"
+  }
+}
