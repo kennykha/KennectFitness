@@ -25,7 +25,7 @@ const UserCard = ({ user }) => {
       <CustomCard variant="outlined">
         <CardContent>
           <CustomLink to={`/user/${name}`}>
-            <Typography variant="h5" gutterBottom component="div">
+            <Typography variant="h6" gutterBottom component="div">
               {name}
             </Typography>
             <Typography variant="body2" color="text.secondary">

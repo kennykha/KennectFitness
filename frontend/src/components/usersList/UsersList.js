@@ -4,7 +4,7 @@ import UserCard from "./UserCard";
 
 const UsersList = ({ users }) => {
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={2}>
       {users.map((user) => (
         <Grid key={user.user} item xs={12}>
           <UserCard user={user} />
