@@ -1,5 +1,5 @@
-import User from "./user";
-import UserData from "./userData";
+import User from "./components/user";
+import UserData from "./components/userData";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {

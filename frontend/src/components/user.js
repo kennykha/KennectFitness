@@ -24,15 +24,6 @@ const User = () => {
 
   // On component render, API call to Express Server
   // Retrieve from SQL DB list of users to render
-  useEffect(() => {
-    axios
-      .get("/getUsers")
-      .then((response) => {
-        console.log("Response from server/db: ", response.data);
-        setUsers(response.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   console.log("User State: ", users);
 
