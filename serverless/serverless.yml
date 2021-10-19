@@ -1,0 +1,44 @@
+service: kennectfitness-api
+
+frameworkVersion: ">=2.11.1 <3.0.0"
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 5000
+    lambdaPort: 5001
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-west-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+      Resource: "*"
+
+functions:
+  get-users:
+    handler: controllers/users.getUsers
+    events:
+      - http:
+          path: /users
+          method: get
+          cors: true
+  get-user:
+    handler: controllers/users.getUser
+    events:
+      - http:
+          path: /users/{name}
+          method: get
+          cors: true
+  add-user:
+    handler: controllers/users.addUser
+    events:
+      - http:
+          path: /addUser
+          method: post
+          cors: true

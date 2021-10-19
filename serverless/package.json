@@ -1,0 +1,31 @@
+{
+  "name": "kennectfitness-react-sls",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "node_modules/serverless/bin/serverless.js deploy",
+    "invoke": "node_modules/serverless/bin/serverless.js invoke",
+    "invoke:local": "node_modules/serverless/bin/serverless.js invoke local",
+    "lint": "eslint . && prettier --check .",
+    "start": "node_modules/serverless/bin/serverless.js offline start",
+    "test": "jest"
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard",
+      "prettier"
+    ]
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.951.0",
+    "eslint-config-prettier": "^8.3.0",
+    "jsonschema": "^1.4.0",
+    "prettier": "^2.4.0",
+    "serverless": "^2.52.1",
+    "serverless-offline": "^6.9.0",
+    "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}
