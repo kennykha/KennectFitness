@@ -1,13 +1,16 @@
 import React from "react";
+import Grid from "@mui/material/Grid";
 import UserCard from "./UserCard";
 
 const UsersList = ({ users }) => {
   return (
-    <>
+    <Grid container spacing={2}>
       {users.map((user) => (
-        <UserCard key={user.user} name={user} />
+        <Grid key={user.user} item xs={12}>
+          <UserCard user={user} />
+        </Grid>
       ))}
-    </>
+    </Grid>
   );
 };
 

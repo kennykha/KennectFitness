@@ -16,7 +16,7 @@ export default function UsersPage(props) {
   }, []);
 
   return (
-    <div className="grid">
+    <div>
       <UsersList users={users} />
       <EditForm setUsers={setUsers} />
     </div>
