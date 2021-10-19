@@ -32,6 +32,32 @@ const addUser = (name, callback) => {
   );
 };
 
+/*
+  const dataFromDb = [{workout: chest press}, { workout: chestPress}, { workout: test}]
+
+  const result = {}
+
+  dataFromDb.forEach(dataSet => {
+    if (!result[workout]) {
+      result[workout] = [dataSet]
+    } else {
+      result[workout].push(dataSet)
+    }
+  })
+
+  in your backend api folder (server)
+  format 
+  {
+    chestPress: [...data],
+    shoulderPress: [...data],
+    test: [...data]
+  }
+
+  Object.keys(result)
+
+  result.chestPress
+ */
+
 const getWorkouts = (name, callback) => {
   connection.query(
     `SELECT * FROM WORKOUTS WHERE USER = '${name}'`,

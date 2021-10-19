@@ -1,16 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-<<<<<<< HEAD
-node_modules/
-=======
 node_modules
->>>>>>> 7a3bf09a4d7f24be9532f29888b4c86f58b10089
 /.pnp
 .pnp.js
-
-#serverless
-/serverless/.serverless
 
 # testing
 /coverage
@@ -28,7 +21,3 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-#files
-test.js
-

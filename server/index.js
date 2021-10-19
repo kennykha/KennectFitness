@@ -97,11 +97,20 @@ App.post("/addDate", (req, res) => {
 
 App.get("/user/:name", (req, res) => {
   console.log("/user/:name endpoint reached for: ", req.params.name);
-  db.getWorkouts(req.params.name, (err, success) => {
+  db.getWorkouts(req.params.name, (err, response) => {
     if (err) {
       res.status(400).send("Unable to retrieve workouts");
     } else {
-      res.status(200).send(success);
+      const result = {};
+      response.forEach((data) => {
+        const { workout: name } = data;
+        if (result[name]) {
+          result[name].push(data);
+        } else {
+          result[name] = [data];
+        }
+      });
+      res.status(200).send(result);
     }
   });
 });

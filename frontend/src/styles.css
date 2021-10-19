@@ -195,8 +195,13 @@ tbody {
 }
 
 td {
+<<<<<<< HEAD:src/styles.css
   width: 50px !important;
   height: 20px !important;
+=======
+  width: 40px;
+  height: 20px;
+>>>>>>> 7a3bf09a4d7f24be9532f29888b4c86f58b10089:frontend/src/styles.css
   border: 1px solid rgb(176, 176, 176);
   overflow: auto;
 }
