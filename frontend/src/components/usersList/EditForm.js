@@ -21,9 +21,6 @@ const UserEditForm = ({ setUsers }) => {
       .catch((err) => console.log(err));
   };
 
-  // <div onClick={handleShowEditForm} id="addUser">
-  //   <h1>+ Add User</h1>
-  // </div>;
   if (showEditForm) {
     return (
       <div id="addUser" className="card">

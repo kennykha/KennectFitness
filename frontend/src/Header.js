@@ -2,10 +2,14 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
-const StyledTypography = styled(Typography)(() => ({
+const StyledTypography = styled(Typography)(({ theme }) => ({
   margin: 0,
   lineHeight: 1.15,
   fontWeight: 300,
+  marginBottom: 24,
+  [theme.breakpoints.up("sm")]: {
+    marginBottom: 36,
+  },
 }));
 
 const Link = styled("a")(() => ({
