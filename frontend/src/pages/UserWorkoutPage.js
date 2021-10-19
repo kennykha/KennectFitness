@@ -14,7 +14,7 @@ const UserWorkoutPage = (props) => {
         setWorkoutData(result.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [user]);
 
   return (
     <>
