@@ -27,11 +27,12 @@ export default function UserEditForm({ setUsers }) {
   return (
     <AddCircleIcon
       onClick={handleOpen}
+      color="primary"
       sx={{
         fontSize: 60,
         position: "fixed",
         bottom: 40,
-        right: 40,
+        right: 24,
         cursor: "pointer",
       }}
     />
