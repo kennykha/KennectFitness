@@ -1,12 +1,12 @@
 export const users = [
-  { id: 1, user: "Kenny" },
-  { id: 3, user: "Toto" },
-  { id: 4, user: "Bargain" },
-  { id: 5, user: "Kasper" },
-  { id: 5, user: "Nikko" },
-  { id: 5, user: "Justin" },
-  { id: 5, user: "Andrew" },
-  { id: 5, user: "Ron" },
+  { id: 1, user: "Kenny", completed: 40, lastUpdated: 12345678 },
+  { id: 3, user: "Toto", completed: 6, lastUpdated: 12345678 },
+  { id: 4, user: "Bargain", completed: 8, lastUpdated: 12345678 },
+  { id: 5, user: "Kasper", completed: 2, lastUpdated: 12345678 },
+  { id: 6, user: "Nikko", completed: 34, lastUpdated: 12345678 },
+  { id: 7, user: "Justin", completed: 26, lastUpdated: 12345678 },
+  { id: 8, user: "Andrew", completed: 18, lastUpdated: 12345678 },
+  { id: 9, user: "Ron", completed: 1, lastUpdated: 12345678 },
 ];
 
 export const workoutData = {
