@@ -1,4 +1,4 @@
-import User from "./components/user";
+import UsersList from "./pages/UsersListPage";
 import UserData from "./components/userData";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -15,7 +15,7 @@ function App() {
             <a href="/">Fitness</a>
           </h1>
           <Switch>
-            <Route exact path="/" component={User} />
+            <Route exact path="/" component={UsersList} />
             <Route path="/user/:name" component={UserData} />
           </Switch>
         </main>
