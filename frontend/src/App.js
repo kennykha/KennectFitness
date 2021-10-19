@@ -1,5 +1,5 @@
-import User from "./user";
-import UserData from "./userData";
+import UsersList from "./pages/UsersListPage";
+import UserWorkouts from "./pages/UserWorkoutPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
             <a href="/">Fitness</a>
           </h1>
           <Switch>
-            <Route exact path="/" component={User} />
-            <Route path="/user/:name" component={UserData} />
+            <Route exact path="/" component={UsersList} />
+            <Route path="/user/:name" component={UserWorkouts} />
           </Switch>
         </main>
       </div>
