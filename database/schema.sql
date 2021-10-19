@@ -27,4 +27,4 @@ CREATE TABLE workouts (
 -- INSERT INTO WORKOUTS (user, workout, date, rep_info, current_set) VALUES ('Kenny', 'Bench Press', '5/2', '5 x 10', '2');
 -- INSERT INTO WORKOUTS (user, workout, date, rep_info, current_set) VALUES ('Kenny', 'Bench Press', '5/3', '5 x 10', '3');
 
--- INSERT INTO USERS (user) VALUES ('Kenny', 'Christine');
+-- INSERT INTO USERS (user) VALUES ('Kenny');

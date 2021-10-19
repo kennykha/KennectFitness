@@ -1,6 +1,8 @@
 import UsersList from "./pages/UsersListPage";
 import UserWorkouts from "./pages/UserWorkoutPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import WorkoutCard from "./components/workoutCard";
+import UserWorkoutDetailPage from "./pages/UserWorkoutDetailPage";
 
 function App() {
   return (
@@ -16,7 +18,12 @@ function App() {
           </h1>
           <Switch>
             <Route exact path="/" component={UsersList} />
-            <Route path="/user/:name" component={UserWorkouts} />
+            <Route exact path="/users/:name" component={UserWorkouts} />
+            <Route
+              exact
+              path="/users/:name/workouts/:workout"
+              component={UserWorkoutDetailPage}
+            />
           </Switch>
         </main>
       </div>

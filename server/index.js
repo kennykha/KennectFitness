@@ -89,28 +89,30 @@ App.post("/addDate", (req, res) => {
     if (err) {
       res.status(404).send("Unable to add new date");
     } else {
-      console.log(success);
+      // console.log(success);
       res.status(200).send(success);
     }
   });
 });
 
-App.get("/user/:name", (req, res) => {
+App.get("/users/:name", (req, res) => {
   console.log("/user/:name endpoint reached for: ", req.params.name);
-  db.getWorkouts(req.params.name, (err, response) => {
+  db.getWorkoutNames(req.params.name, (err, response) => {
     if (err) {
       res.status(400).send("Unable to retrieve workouts");
     } else {
-      const result = {};
-      response.forEach((data) => {
-        const { workout: name } = data;
-        if (result[name]) {
-          result[name].push(data);
-        } else {
-          result[name] = [data];
-        }
-      });
-      res.status(200).send(result);
+      res.status(200).send(response);
+    }
+  });
+});
+
+App.get("/users/:name/workouts/:workoutName", (req, res) => {
+  const { name, workoutName } = req.params;
+  db.getWorkoutData(name, workoutName, (err, response) => {
+    if (err) {
+      res.status(400).send("Unable to retrieve workout data");
+    } else {
+      res.status(200).send(response);
     }
   });
 });
