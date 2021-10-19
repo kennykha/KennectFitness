@@ -1,5 +1,5 @@
 import UsersList from "./pages/UsersListPage";
-import UserData from "./components/userData";
+import UserWorkouts from "./pages/UserWorkoutPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           </h1>
           <Switch>
             <Route exact path="/" component={UsersList} />
-            <Route path="/user/:name" component={UserData} />
+            <Route path="/user/:name" component={UserWorkouts} />
           </Switch>
         </main>
       </div>
