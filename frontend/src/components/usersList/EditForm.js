@@ -1,42 +1,39 @@
 import React, { useState } from "react";
-import { addUser } from "../../actions/users";
+// import { addUser } from "../../actions/users";
+import AddUserModal from "./AddUserModal";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-const UserEditForm = ({ setUsers }) => {
+export default function UserEditForm({ setUsers }) {
   const [showEditForm, setShowEditForm] = useState(false);
 
-  const handleShowEditForm = () => {
+  const handleOpen = () => {
     setShowEditForm(true);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const name = document.getElementById("addUserName").value;
-
-    addUser(name)
-      .then((success) => {
-        setUsers(success.data);
-        setShowEditForm(false);
-      })
-      .catch((err) => console.log(err));
+  const handleClose = () => {
+    setShowEditForm(false);
   };
 
   if (showEditForm) {
     return (
-      <div id="addUser" className="card">
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="name" id="addUserName" />
-          <input type="submit" style={{ display: "none" }} />
-        </form>
-      </div>
+      <AddUserModal
+        open={showEditForm}
+        onClose={handleClose}
+        setUsers={setUsers}
+        setShowEditForm={setShowEditForm}
+      />
     );
   }
   return (
     <AddCircleIcon
-      onClick={handleShowEditForm}
-      sx={{ fontSize: 60, position: "fixed", bottom: 40, right: 40 }}
+      onClick={handleOpen}
+      sx={{
+        fontSize: 60,
+        position: "fixed",
+        bottom: 40,
+        right: 40,
+        cursor: "pointer",
+      }}
     />
   );
-};
-
-export default UserEditForm;
+}

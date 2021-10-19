@@ -19,7 +19,6 @@ const CustomLink = styled(Link)(() => ({
 }));
 
 const UserCard = ({ user }) => {
-  console.log(user);
   const { user: name, completed } = user;
   if (name) {
     return (
