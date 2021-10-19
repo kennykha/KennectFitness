@@ -1,52 +1,36 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import WorkoutCard from "./workoutCard";
 import AddWorkoutModal from "./addWorkout/modal";
+import { getUserWorkoutData } from "../actions/users";
 
 const UserData = (props) => {
   const user = props.match.params.name;
-  const currentWorkoutList = [];
-  const [workout, setWorkout] = useState([]);
-  //   const [showWorkoutAddForm, setShowWorkoutAddForm] = useState(false);
+  const [workoutData, setWorkout] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`/user/${user}`)
-      .then((success) => {
-        setWorkout(success.data);
+    getUserWorkoutData(user)
+      .then((result) => {
+        setWorkout(result.data);
       })
       .catch((err) => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  workout.forEach((workout) => {
-    if (!currentWorkoutList.includes(workout.workout)) {
-      currentWorkoutList.push(workout.workout);
-    }
-  });
+  console.log(workoutData);
 
   const handleAddWorkout = () => {
     const modal = document.getElementById("workoutModal");
     modal.style.display = "block";
   };
 
-  const filterCurrentWorkoutData = (workoutList, currentWorkout) => {
-    return workoutList.filter((workout) => workout.workout === currentWorkout);
-  };
-
   return (
     <div>
       This is the User Data Component for {user}
-      {currentWorkoutList.map((currentWorkout) => {
-        const currentWorkoutData = filterCurrentWorkoutData(
-          workout,
-          currentWorkout
-        );
+      {Object.keys(workoutData).map((workoutName) => {
         return (
           <WorkoutCard
-            key={currentWorkout}
-            currentWorkout={currentWorkout}
-            currentWorkoutData={currentWorkoutData}
+            key={workoutName}
+            currentWorkout={workoutName}
+            currentWorkoutData={workoutData[workoutName]}
             user={user}
           />
         );
