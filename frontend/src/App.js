@@ -7,15 +7,13 @@ import Layout from "./components/Layout";
 function App() {
   return (
     <Router>
-      <div className="container">
-        <Layout>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={UsersList} />
-            <Route path="/user/:name" component={UserWorkouts} />
-          </Switch>
-        </Layout>
-      </div>
+      <Layout>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={UsersList} />
+          <Route path="/user/:name" component={UserWorkouts} />
+        </Switch>
+      </Layout>
     </Router>
   );
 }

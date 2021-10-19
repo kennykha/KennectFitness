@@ -16,7 +16,7 @@ const Link = styled("a")(() => ({
 
 export default function Header() {
   return (
-    <StyledTypography className="title" variant="h3">
+    <StyledTypography className="title" align="center" variant="h4">
       Kennect
       <Link href="/">Fitness</Link>
     </StyledTypography>

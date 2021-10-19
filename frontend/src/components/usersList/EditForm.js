@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { addUser } from "../../actions/users";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const UserEditForm = ({ setUsers }) => {
   const [showEditForm, setShowEditForm] = useState(false);
@@ -20,19 +21,24 @@ const UserEditForm = ({ setUsers }) => {
       .catch((err) => console.log(err));
   };
 
-  return (
-    <div id="addUser" className="card">
-      {showEditForm ? (
+  // <div onClick={handleShowEditForm} id="addUser">
+  //   <h1>+ Add User</h1>
+  // </div>;
+  if (showEditForm) {
+    return (
+      <div id="addUser" className="card">
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="name" id="addUserName" />
           <input type="submit" style={{ display: "none" }} />
         </form>
-      ) : (
-        <div onClick={handleShowEditForm} id="addUser">
-          <h1>+ Add User</h1>
-        </div>
-      )}
-    </div>
+      </div>
+    );
+  }
+  return (
+    <AddCircleIcon
+      onClick={handleShowEditForm}
+      sx={{ fontSize: 60, position: "fixed", bottom: 40, right: 40 }}
+    />
   );
 };
 
