@@ -1,15 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+
+const CustomLink = styled(Link)(() => ({
+  textDecoration: "none",
+  color: "black",
+}));
+
 const UserCard = ({ name }) => {
   if (name) {
     return (
-      <Link to={`/user/${name.user}`} className="card">
-        <h1>{name.user}</h1>
-      </Link>
+      <Card variant="outlined">
+        <CardContent>
+          <CustomLink to={`/user/${name.user}`}>
+            <Typography align="center" variant="h5">
+              {name.user}
+            </Typography>
+          </CustomLink>
+        </CardContent>
+      </Card>
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 export default UserCard;
