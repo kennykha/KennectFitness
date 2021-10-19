@@ -4,18 +4,16 @@ import axios from "axios";
 const WorkoutCardDate = ({ date, user, currentWorkout }) => {
   const [showEditForm, handleShowEditForm] = useState(false);
   const [currentDate, handleCurrentDate] = useState(date);
-  const [previousDate, handlePreviousDate] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const dateInfo = document.getElementById("date-info").value;
-    // console.log(dateInfo, user, currentWorkout, previousDate);
     axios
       .post("/editDate", {
         user: user,
         date: dateInfo,
         currentWorkout: currentWorkout,
-        previousDate: previousDate,
+        currentDate: currentDate,
       })
       .then((success) => {
         console.log(success);
@@ -31,7 +29,6 @@ const WorkoutCardDate = ({ date, user, currentWorkout }) => {
         style={{ cursor: "pointer" }}
         onClick={() => {
           handleShowEditForm(true);
-          handlePreviousDate(date);
         }}
         value={currentDate}
       >

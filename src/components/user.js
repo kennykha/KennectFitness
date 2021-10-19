@@ -26,7 +26,7 @@ const User = () => {
   // Retrieve from SQL DB list of users to render
   useEffect(() => {
     axios
-      .get("/getUsers")
+      .get("/users")
       .then((response) => {
         console.log("Response from server/db: ", response.data);
         setUsers(response.data);

@@ -1,16 +1,16 @@
+import { useState } from "react";
 import WorkoutCardDate from "./workoutCardDate";
 import WorkoutCardSet from "./workoutCardSets";
 import axios from "axios";
 
-const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
-  // console.log(allWorkoutData)
+const WorkoutCard = ({ currentWorkout, currentWorkoutData, user }) => {
+  const [workoutData, handleWorkoutData] = useState(currentWorkoutData);
+  console.log(handleWorkoutData);
   const uniqueSets = () => {
     const numberOfSets = [];
-    allWorkoutData.forEach((workout) => {
-      if (workout.workout === currentWorkout) {
-        if (!numberOfSets.includes(workout.current_set)) {
-          numberOfSets.push(workout.current_set);
-        }
+    workoutData.forEach((workout) => {
+      if (!numberOfSets.includes(workout.current_set)) {
+        numberOfSets.push(workout.current_set);
       }
     });
 
@@ -20,33 +20,20 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
 
   const uniqueDates = () => {
     const numberOfDates = [];
-    allWorkoutData.forEach((workout) => {
-      if (workout.workout === currentWorkout) {
-        if (!numberOfDates.includes(workout.date)) {
-          numberOfDates.push(workout.date);
-        }
+    workoutData.forEach((workout) => {
+      if (!numberOfDates.includes(workout.date)) {
+        numberOfDates.push(workout.date);
       }
     });
 
     return numberOfDates;
   };
 
-  const mapCurrentWorkout = () => {
-    const currentWorkoutData = [];
-    allWorkoutData.forEach((workout) => {
-      if (workout.workout === currentWorkout) {
-        currentWorkoutData.push(workout);
-      }
-    });
-
-    return currentWorkoutData;
-  };
-
   const numberOfSets = uniqueSets();
   const numberOfDates = uniqueDates();
-  const currentWorkoutData = mapCurrentWorkout();
 
-  const handleSetAddition = () => {
+  const handleSetAddition = (e) => {
+    e.preventDefault();
     axios
       .post("/addSet", {
         user: user,
@@ -54,24 +41,30 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
         currentWorkout: currentWorkout,
         setInfo: numberOfSets.length + 1,
       })
-      .then((success) => console.log(success))
+      .then((success) => handleWorkoutData(success.data))
       .catch((err) => console.log(err));
   };
 
-  const handleDateAddition = () => {
-    axios
-      .post("/addDate", {
-        user: user,
-        currentWorkout: currentWorkout,
-        sets: numberOfSets,
-      })
-      .then((success) => console.log(success))
-      .catch((err) => console.log(err));
+  const handleDateAddition = (e) => {
+    if (workoutData[workoutData.length - 1].date === "date") {
+      e.preventDefault();
+      alert("Please add a date to your previous workout first");
+    } else {
+      e.preventDefault(e);
+      axios
+        .post("/addDate", {
+          user: user,
+          currentWorkout: currentWorkout,
+          sets: numberOfSets,
+        })
+        .then((success) => handleWorkoutData(success.data))
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
     <div className="dataCard">
-      <table className="dataCard">
+      <table>
         <thead>
           <tr>
             <th colSpan="3">{currentWorkout}</th>
@@ -96,13 +89,25 @@ const WorkoutCard = ({ currentWorkout, allWorkoutData, user }) => {
               <WorkoutCardSet
                 key={`${currentWorkout}-${set}`}
                 set={set}
-                currentWorkoutData={currentWorkoutData}
+                currentWorkoutData={workoutData}
               />
             );
           })}
+          {/* <tr>
+            <td>
+              <form onSubmit={handleSetAddition}>
+                <button type="submit">Add Set</button>
+              </form>
+            </td>
+            <td>
+              <form onSubmit={handleDateAddition}>
+                <button type="submit">Add Date</button>
+              </form>
+            </td>
+          </tr> */}
         </tbody>
       </table>
-      <div>
+      <div style={{ display: "flex", marginTop: "5px" }}>
         <form onSubmit={handleSetAddition}>
           <button type="submit">Add Set</button>
         </form>

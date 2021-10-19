@@ -30,15 +30,22 @@ const UserData = (props) => {
     modal.style.display = "block";
   };
 
+  const filterCurrentWorkoutData = (workoutList, currentWorkout) => {
+    return workoutList.filter((workout) => workout.workout === currentWorkout);
+  };
+
   return (
     <div>
-      This is the User Data Component for {user}
       {currentWorkoutList.map((currentWorkout) => {
+        const currentWorkoutData = filterCurrentWorkoutData(
+          workout,
+          currentWorkout
+        );
         return (
           <WorkoutCard
             key={currentWorkout}
             currentWorkout={currentWorkout}
-            allWorkoutData={workout}
+            currentWorkoutData={currentWorkoutData}
             user={user}
           />
         );

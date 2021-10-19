@@ -76,10 +76,10 @@ const editWorkout = (id, repInfo, callback) => {
   );
 };
 
-const editDate = (user, date, currentWorkout, previousDate, callback) => {
-  console.log(user, date, currentWorkout, previousDate);
+const editDate = (user, date, currentWorkout, currentDate, callback) => {
+  console.log(user, date, currentWorkout, currentDate);
   connection.query(
-    `UPDATE workouts SET date = '${date}' WHERE user = '${user}' AND workout = '${currentWorkout}' AND date = '${previousDate}'`,
+    `UPDATE workouts SET date = '${date}' WHERE user = '${user}' AND workout = '${currentWorkout}' AND date = '${currentDate}'`,
     (err, result) => {
       if (err) {
         callback(err);
@@ -94,26 +94,45 @@ const addSet = (user, dates, currentWorkout, setInfo, callback) => {
   connection.query(
     `INSERT INTO workouts (user, workout, date, rep_info, current_set) VALUES ?`,
     [dates.map((date) => [user, currentWorkout, date, "   ", setInfo])],
-    (err, result) => {
+    (err) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, result);
+        connection.query(
+          `SELECT * FROM WORKOUTS where user = '${user}' AND workout = '${currentWorkout}'`,
+          (err, result) => {
+            if (err) {
+              console.log(err);
+              callback(err);
+            } else {
+              console.log("made it into select all");
+              callback(null, result);
+            }
+          }
+        );
       }
     }
   );
 };
 
 const addDate = (user, currentWorkout, sets, callback) => {
-  console.log(sets);
   connection.query(
     `INSERT INTO workouts (user, workout, date, rep_info, current_set) VALUES ?`,
-    [sets.map((set) => [user, currentWorkout, "   ", "   ", set])],
-    (err, result) => {
+    [sets.map((set) => [user, currentWorkout, "date", "   ", set])],
+    (err) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, result);
+        connection.query(
+          `SELECT * FROM WORKOUTS where user = '${user}' AND workout = '${currentWorkout}'`,
+          (err, result) => {
+            if (err) {
+              callback(err);
+            } else {
+              callback(null, result);
+            }
+          }
+        );
       }
     }
   );

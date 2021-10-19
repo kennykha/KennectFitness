@@ -101,7 +101,7 @@ input {
   border-width: 0px;
   border: none;
   outline: none;
-  font-size: 1.5rem;
+  font-size: inherit;
   font-weight: bold;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -125,7 +125,7 @@ input {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 40%;
 }
 
 .close {
@@ -144,7 +144,7 @@ input {
 
 .date-rep-container {
   border: 2px solid rgb(121, 121, 121);
-  margin: 5px;
+  margin: 2px;
 }
 
 .set-info {
@@ -165,7 +165,38 @@ input {
   width: 25px;
 }
 
+/* .table-wrapper {
+  position: relative;
+}
+
+.table-scroll {
+  width: 300px;
+  overflow: auto;
+  margin-top: 20px;
+} */
+
+table {
+  width: 220px !important;
+  table-layout: fixed;
+}
+
+td:nth-child(1) {
+  width: 100px !important;
+}
+
+tbody,
+thead tr {
+  display: block;
+}
+
+tbody {
+  width: 275px;
+  overflow: auto;
+}
+
 td {
-  width: 40px;
+  width: 50px !important;
+  height: 20px !important;
   border: 1px solid rgb(176, 176, 176);
+  overflow: auto;
 }

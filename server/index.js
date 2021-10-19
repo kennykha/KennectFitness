@@ -62,8 +62,8 @@ App.post("/editWorkoutData", (req, res) => {
 });
 
 App.post("/editDate", (req, res) => {
-  const { user, date, currentWorkout, previousDate } = req.body;
-  db.editDate(user, date, currentWorkout, previousDate, (err, success) => {
+  const { user, date, currentWorkout, currentDate } = req.body;
+  db.editDate(user, date, currentWorkout, currentDate, (err, success) => {
     if (err) {
       res.status(404).send("Unable to edit date");
     } else {
@@ -89,6 +89,7 @@ App.post("/addDate", (req, res) => {
     if (err) {
       res.status(404).send("Unable to add new date");
     } else {
+      console.log(success);
       res.status(200).send(success);
     }
   });
