@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getUserWorkoutData } from "../actions/users";
-import moment from "moment";
+import WorkoutDetail from "../components/workouts/workoutDetail";
 
 const UserWorkoutDetailPage = (props) => {
   const [workoutData, handelWorkoutData] = useState([]);
@@ -17,30 +17,30 @@ const UserWorkoutDetailPage = (props) => {
       });
   }, [name, workout]);
 
-  console.log("Workout Data: ", workoutData);
+  const handleWorkoutDataOpen = (OpenKey) => {
+    const newWorkoutData = {};
+    Object.keys(workoutData).forEach((key) => {
+      if (key === OpenKey) {
+        newWorkoutData[key] = {
+          ...workoutData[key],
+          open: !workoutData[key].open,
+        };
+      } else {
+        newWorkoutData[key] = { ...workoutData[key] };
+      }
+    });
+
+    handelWorkoutData(newWorkoutData);
+    // console.log("NewWorkoutData:", newWorkoutData);
+  };
 
   return (
     <div>
       <h2>{workout}</h2>
-      <div>
-        {Object.keys(workoutData).map((key) => (
-          <div
-            key={key}
-            style={{
-              border: "1px solid black",
-              margin: "2px",
-              width: "600px",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <div>Date: {moment(key).format("L")}</div>
-            <div>Max Set: {workoutData[key].maxSet}</div>
-            <div>Max Rep: {workoutData[key].maxRep}</div>
-            <div>Max Weight: {workoutData[key].maxWeight}</div>
-          </div>
-        ))}
-      </div>
+      <WorkoutDetail
+        workoutData={workoutData}
+        handleWorkoutDataOpen={handleWorkoutDataOpen}
+      />
     </div>
   );
 };
