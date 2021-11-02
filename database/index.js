@@ -32,32 +32,6 @@ const addUser = (name, callback) => {
   );
 };
 
-/*
-  const dataFromDb = [{workout: chest press}, { workout: chestPress}, { workout: test}]
-
-  const result = {}
-
-  dataFromDb.forEach(dataSet => {
-    if (!result[workout]) {
-      result[workout] = [dataSet]
-    } else {
-      result[workout].push(dataSet)
-    }
-  })
-
-  in your backend api folder (server)
-  format 
-  {
-    chestPress: [...data],
-    shoulderPress: [...data],
-    test: [...data]
-  }
-
-  Object.keys(result)
-
-  result.chestPress
- */
-
 const getWorkoutNames = (name, callback) => {
   connection.query(
     `SELECT DISTINCT workout FROM WORKOUTS WHERE USER = '${name}'`,
@@ -73,7 +47,7 @@ const getWorkoutNames = (name, callback) => {
 
 const getWorkoutData = (name, workoutName, callback) => {
   connection.query(
-    `SELECT * FROM WORKOUTS WHERE USER = '${name}' AND WORKOUT = '${workoutName}'`,
+    `SELECT * FROM WORKOUTS WHERE USER = '${name}' AND WORKOUT = '${workoutName}' ORDER BY workoutDate DESC, current_set ASC`,
     (err, result) => {
       if (err) {
         callback(err);
@@ -88,7 +62,7 @@ const addWorkout = (user, workoutName, data, callback) => {
   data.forEach((record) => {
     record.sets.forEach((set, idx) => {
       connection.query(
-        `INSERT INTO WORKOUTS (user, workout, date, rep_info, current_set) VALUES ('${user}', '${workoutName}', '${
+        `INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, current_set) VALUES ('${user}', '${workoutName}', '${
           record.date
         }', '${set}', '${idx + 1}')`,
         (err) => {
@@ -118,7 +92,7 @@ const editWorkout = (id, repInfo, callback) => {
 const editDate = (user, date, currentWorkout, currentDate, callback) => {
   console.log(user, date, currentWorkout, currentDate);
   connection.query(
-    `UPDATE workouts SET date = '${date}' WHERE user = '${user}' AND workout = '${currentWorkout}' AND date = '${currentDate}'`,
+    `UPDATE workouts SET workoutDate = '${date}' WHERE user = '${user}' AND workout = '${currentWorkout}' AND workoutDate = '${currentDate}'`,
     (err, result) => {
       if (err) {
         callback(err);
@@ -131,7 +105,7 @@ const editDate = (user, date, currentWorkout, currentDate, callback) => {
 
 const addSet = (user, dates, currentWorkout, setInfo, callback) => {
   connection.query(
-    `INSERT INTO workouts (user, workout, date, rep_info, current_set) VALUES ?`,
+    `INSERT INTO workouts (user, workout, workoutDate, rep_info, current_set) VALUES ?`,
     [dates.map((date) => [user, currentWorkout, date, "   ", setInfo])],
     (err) => {
       if (err) {
@@ -156,7 +130,7 @@ const addSet = (user, dates, currentWorkout, setInfo, callback) => {
 
 const addDate = (user, currentWorkout, sets, callback) => {
   connection.query(
-    `INSERT INTO workouts (user, workout, date, rep_info, current_set) VALUES ?`,
+    `INSERT INTO workouts (user, workout, workoutDate, rep_info, current_set) VALUES ?`,
     [sets.map((set) => [user, currentWorkout, "   ", "   ", set])],
     (err) => {
       if (err) {

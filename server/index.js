@@ -110,9 +110,34 @@ App.get("/users/:name/workouts/:workoutName", (req, res) => {
   const { name, workoutName } = req.params;
   db.getWorkoutData(name, workoutName, (err, response) => {
     if (err) {
+      console.log(err);
       res.status(400).send("Unable to retrieve workout data");
     } else {
-      res.status(200).send(response);
+      // console.log(response);
+      const result = {};
+      response.forEach((workout) => {
+        console.log(workout);
+        const { workoutDate } = workout;
+        if (result[workoutDate]) {
+          result[workoutDate].workout.push(workout);
+          result[workoutDate] = {
+            ...result[workoutDate],
+            maxSet: Math.max(result[workoutDate].maxSet, workout.current_set),
+            maxWeight: Math.max(result[workoutDate].maxWeight, workout.weight),
+            maxRep: Math.max(result[workoutDate].maxRep, workout.rep_info),
+          };
+        } else {
+          result[workoutDate] = {
+            workout: [workout],
+            maxSet: workout.current_set,
+            maxWeight: workout.weight,
+            maxRep: workout.rep_info,
+            open: false,
+          };
+        }
+      });
+      console.log(result);
+      res.status(200).send(result);
     }
   });
 });
