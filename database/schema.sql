@@ -1,30 +1,38 @@
--- DROP DATABASE kennectfitness;
+DROP DATABASE kennectfitness;
 
--- CREATE DATABASE kennectfitness;
+CREATE DATABASE kennectfitness;
 
 USE kennectfitness;
 
--- CREATE TABLE users (
---   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
---   user varchar(30)
--- );
+CREATE TABLE users (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user varchar(30)
+);
 
-DROP TABLE workouts;
+-- DROP TABLE workouts;
 
 CREATE TABLE workouts (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user varchar (30),
     workout varchar (60),
-    date varchar (30),
-    rep_info varchar (30),
-    current_set varchar (30)
+    workoutDate DATE,
+    rep_info int (11),
+    weight  int (11),
+    current_set int (11)
 );
 
--- INSERT INTO WORKOUTS (user, workout, date, rep_info, current_set) VALUES ('Kenny', 'Pull Ups', '5/1', '5 x 10', '1');
--- INSERT INTO WORKOUTS (user, workout, date, rep_info, current_set) VALUES ('Kenny', 'Pull Ups', '5/2', '5 x 10', '2');
--- INSERT INTO WORKOUTS (user, workout, date, rep_info, current_set) VALUES ('Kenny', 'Pull Ups', '5/3', '5 x 10', '3');
--- INSERT INTO WORKOUTS (user, workout, date, rep_info, current_set) VALUES ('Kenny', 'Bench Press', '5/1', '5 x 10', '1');
--- INSERT INTO WORKOUTS (user, workout, date, rep_info, current_set) VALUES ('Kenny', 'Bench Press', '5/2', '5 x 10', '2');
--- INSERT INTO WORKOUTS (user, workout, date, rep_info, current_set) VALUES ('Kenny', 'Bench Press', '5/3', '5 x 10', '3');
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-01', 5, 50, 1);
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-01', 5, 50, 2);
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-01', 5, 50, 3);
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-02', 5, 50, 1);
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-02', 5, 50, 2);
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-02', 5, 50, 3);
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-03', 10, 55, 1);
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-03', 10, 56, 2);
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-03', 10, 65, 3);
+INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, weight, current_set) VALUES ('Kenny', 'Chest Press', '2020-05-03', 10, 60, 3);
 
--- INSERT INTO USERS (user) VALUES ('Kenny');
+INSERT INTO USERS (user) VALUES ('Kenny');
+INSERT INTO USERS (user) VALUES ('Kasper');
+INSERT INTO USERS (user) VALUES ('Yuzu');
+INSERT INTO USERS (user) VALUES ('Toto');
