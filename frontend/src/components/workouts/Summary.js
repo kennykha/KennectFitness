@@ -1,16 +1,20 @@
-import WorkoutCard from "../workoutCard";
+// import WorkoutCard from "../workoutCard";
+import { Link } from "react-router-dom";
 
-const WorkoutSummary = ({ workoutData, user }) => {
+const WorkoutSummary = ({ workoutNames, user }) => {
+  // console.log(workoutNames);
   return (
     <div>
-      {Object.keys(workoutData).map((workoutName) => {
+      {workoutNames.map((workout) => {
+        const workoutName = workout.workout;
         return (
-          <WorkoutCard
+          <Link
+            to={`/users/${user}/workouts/${workoutName}`}
+            className="card"
             key={workoutName}
-            currentWorkout={workoutName}
-            currentWorkoutData={workoutData[workoutName]}
-            user={user}
-          />
+          >
+            <h1>{workoutName}</h1>
+          </Link>
         );
       })}
     </div>

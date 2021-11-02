@@ -58,9 +58,22 @@ const addUser = (name, callback) => {
   result.chestPress
  */
 
-const getWorkouts = (name, callback) => {
+const getWorkoutNames = (name, callback) => {
   connection.query(
-    `SELECT * FROM WORKOUTS WHERE USER = '${name}'`,
+    `SELECT DISTINCT workout FROM WORKOUTS WHERE USER = '${name}'`,
+    (err, result) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, result);
+      }
+    }
+  );
+};
+
+const getWorkoutData = (name, workoutName, callback) => {
+  connection.query(
+    `SELECT * FROM WORKOUTS WHERE USER = '${name}' AND WORKOUT = '${workoutName}'`,
     (err, result) => {
       if (err) {
         callback(err);
@@ -167,7 +180,8 @@ const addDate = (user, currentWorkout, sets, callback) => {
 module.exports = {
   getUsers,
   addUser,
-  getWorkouts,
+  getWorkoutNames,
+  getWorkoutData,
   addWorkout,
   editWorkout,
   editDate,

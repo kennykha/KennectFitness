@@ -8,6 +8,10 @@ export const addUser = (name) => {
   return axios.post("/addUser", { name: name });
 };
 
-export const getUserWorkoutData = (name) => {
-  return axios.get(`/user/${name}`);
+export const getUserWorkoutNames = (name) => {
+  return axios.get(`/users/${name}`);
+};
+
+export const getUserWorkoutData = (name, workoutName) => {
+  return axios.get(`/users/${name}/workouts/${workoutName}`);
 };
