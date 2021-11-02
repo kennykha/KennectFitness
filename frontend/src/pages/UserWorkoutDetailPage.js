@@ -9,6 +9,7 @@ const UserWorkoutDetailPage = (props) => {
   useEffect(() => {
     getUserWorkoutData(name, workout)
       .then((response) => {
+        console.log(response);
         handelWorkoutData(response.data);
       })
       .catch((err) => {
@@ -16,15 +17,15 @@ const UserWorkoutDetailPage = (props) => {
       });
   }, [name, workout]);
 
-  console.log("WORKOUTDATA", workoutData);
+  console.log("Workout Data: ", workoutData);
 
   return (
     <div>
-      {workoutData.map((data) => {
-        console.log(moment(data.workoutDate).format("L"));
-        return (
+      <h2>{workout}</h2>
+      <div>
+        {Object.keys(workoutData).map((key) => (
           <div
-            key={data.id}
+            key={key}
             style={{
               border: "1px solid black",
               margin: "2px",
@@ -33,13 +34,13 @@ const UserWorkoutDetailPage = (props) => {
               justifyContent: "space-between",
             }}
           >
-            <div>Date: {moment(data.workoutDate).format("L")}</div>
-            <div>Workout: {data.workout}</div>
-            <div>Set: {data.current_set}</div>
-            <div>Reps: {data.rep_info}</div>
+            <div>Date: {moment(key).format("L")}</div>
+            <div>Max Set: {workoutData[key].maxSet}</div>
+            <div>Max Rep: {workoutData[key].maxRep}</div>
+            <div>Max Weight: {workoutData[key].maxWeight}</div>
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };
