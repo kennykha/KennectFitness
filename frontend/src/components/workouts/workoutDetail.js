@@ -28,31 +28,44 @@ const WorkoutDetail = ({ workoutData, handleWorkoutDataOpen }) => {
               <div>Max Weight: {workoutData[key].maxWeight}</div>
             </>
           )}
-
-          {workoutData[key].open &&
-            workoutData[key].workout.map((data, idx) => {
-              const {
-                workoutDate,
-                current_set: currentSet,
-                rep_info: repInfo,
-                weight,
-              } = data;
-              return (
-                <div
-                  key={idx}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    margin: "5px",
-                  }}
-                >
-                  <div>Date: {moment(workoutDate).format("L")}</div>
-                  <div>Set: {currentSet}</div>
-                  <div>Reps: {repInfo}</div>
-                  <div>Weight: {weight}</div>
-                </div>
-              );
-            })}
+          {workoutData[key].open && (
+            <div>
+              <h2
+                style={{
+                  margin: "0",
+                  display: "flex",
+                  justifyContent: "center",
+                  border: "1px solid black",
+                  borderRadius: "20px",
+                }}
+              >
+                +
+              </h2>
+              {workoutData[key].workout.map((data, idx) => {
+                const {
+                  workoutDate,
+                  current_set: currentSet,
+                  rep_info: repInfo,
+                  weight,
+                } = data;
+                return (
+                  <div
+                    key={idx}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      margin: "5px",
+                    }}
+                  >
+                    <div>Date: {moment(workoutDate).format("L")}</div>
+                    <div>Set: {currentSet}</div>
+                    <div>Reps: {repInfo}</div>
+                    <div>Weight: {weight}</div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       ))}
     </div>

@@ -9,7 +9,7 @@ export default function AddWorkoutButton(props) {
   return (
     <div
       className="dataCard"
-      style={{ width: "50%", cursor: "pointer" }}
+      style={{ width: "30%", cursor: "pointer" }}
       onClick={handleModalOpen}
     >
       +Add Workout
