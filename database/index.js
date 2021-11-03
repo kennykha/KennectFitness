@@ -50,6 +50,7 @@ const getWorkoutData = (name, workoutName, callback) => {
     `SELECT * FROM WORKOUTS WHERE USER = '${name}' AND WORKOUT = '${workoutName}' ORDER BY workoutDate DESC, current_set ASC`,
     (err, result) => {
       if (err) {
+        console.log("getWorkoutData ERROR: ", err);
         callback(err);
       } else {
         callback(null, result);
@@ -58,21 +59,34 @@ const getWorkoutData = (name, workoutName, callback) => {
   );
 };
 
-const addWorkout = (user, workoutName, data, callback) => {
-  data.forEach((record) => {
-    record.sets.forEach((set, idx) => {
-      connection.query(
-        `INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, current_set) VALUES ('${user}', '${workoutName}', '${
-          record.date
-        }', '${set}', '${idx + 1}')`,
-        (err) => {
-          if (err) {
-            callback(err);
-          }
-        }
-      );
-    });
-  });
+// const addWorkout = (user, workoutName, data, callback) => {
+//   data.forEach((record) => {
+//     record.sets.forEach((set, idx) => {
+//       connection.query(
+//         `INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, current_set) VALUES ('${user}', '${workoutName}', '${
+//           record.date
+//         }', '${set}', '${idx + 1}')`,
+//         (err) => {
+//           if (err) {
+//             callback(err);
+//           }
+//         }
+//       );
+//     });
+//   });
+//   callback(null, "Successfully added workout to database");
+// };
+
+const addWorkout = (user, workoutName, callback) => {
+  connection.query(
+    `INSERT INTO WORKOUTS (user, workout) VALUES ('${user}', '${workoutName}')`,
+    (err) => {
+      if (err) {
+        console.log("addWorkoutData ERROR: ", err);
+        callback(err);
+      }
+    }
+  );
   callback(null, "Successfully added workout to database");
 };
 
