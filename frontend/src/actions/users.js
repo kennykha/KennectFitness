@@ -15,3 +15,7 @@ export const getUserWorkoutNames = (name) => {
 export const getUserWorkoutData = (name, workoutName) => {
   return axios.get(`/users/${name}/workouts/${workoutName}`);
 };
+
+export const addUserWorkout = (name, workoutName) => {
+  return axios.post(`/users/${name}/workouts/addWorkout/${workoutName}`);
+};
