@@ -14,8 +14,6 @@ export default function AddWorkoutButton({
 }) {
   const [workoutName, handleWorkoutName] = React.useState("");
 
-  console.log(workoutName);
-
   return (
     <div>
       <Button onClick={handleOpen}>Add Workout</Button>
@@ -26,7 +24,6 @@ export default function AddWorkoutButton({
             onChange={(e) => handleWorkoutName(e.target.value)}
           />
           <Button onClick={() => handleAddUserWorkout(workoutName)}>
-            {" "}
             Submit
           </Button>
         </Box>
