@@ -36,6 +36,12 @@ const UserWorkoutDetailPage = (props) => {
     handelWorkoutData(newWorkoutData);
   };
 
+  const handleAddUserWorkoutData = (date, set, rep, weight) => {
+    console.log(date, set, Number(rep), Number(weight));
+
+    handleClose();
+  };
+
   return (
     <div>
       <h2>{workout}</h2>
@@ -47,6 +53,7 @@ const UserWorkoutDetailPage = (props) => {
         open={open}
         handleClose={handleClose}
         handleOpen={handleOpen}
+        handleAddUserWorkoutData={handleAddUserWorkoutData}
       />
     </div>
   );

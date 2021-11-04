@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-// import Input from "@mui/material/Input";
 import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
 import moment from "moment";
 import MenuItem from "@mui/material/MenuItem";
-// import { addUserWorkout } from "../../actions/users";
-// import Typography from "@mui/material/Typography";
 
 export default function AddWorkoutDataButton({
   open,
   handleClose,
   handleOpen,
+  handleAddUserWorkoutData,
 }) {
-  //   const [workoutName, handleWorkoutName] = React.useState("");
-  const today = moment().format("L");
+  const today = moment();
+  const [workoutDateValue, setWorkoutDateValue] = useState({ today });
+  const [workoutSetValue, setWorkoutSetValue] = useState("");
+  const [workoutRepValue, setWorkoutRepValue] = useState("");
+  const [workoutWeightValue, setWorkoutWeightValue] = useState("");
 
   return (
     <div>
@@ -26,12 +27,15 @@ export default function AddWorkoutDataButton({
             id="date"
             label="Date"
             type="date"
-            defaultValue={today}
+            // defaultValue={today}
             sx={innerBoxComponents}
             InputLabelProps={{
               shrink: true,
             }}
+            onChange={(e) => setWorkoutDateValue(e.target.value)}
+            value={workoutDateValue}
           />
+
           <TextField
             id="outlined-select-set"
             select
@@ -40,8 +44,8 @@ export default function AddWorkoutDataButton({
             InputLabelProps={{
               shrink: true,
             }}
-            //   value={currency}
-            //   onChange={handleChange}
+            onChange={(e) => setWorkoutSetValue(e.target.value)}
+            value={workoutSetValue}
           >
             <MenuItem value={1}>1</MenuItem>
             <MenuItem value={2}>2</MenuItem>
@@ -59,6 +63,8 @@ export default function AddWorkoutDataButton({
             }}
             InputProps={{ inputProps: { min: 0 } }}
             sx={innerBoxComponents}
+            onChange={(e) => setWorkoutRepValue(e.target.value)}
+            value={workoutRepValue}
           />
 
           <TextField
@@ -70,9 +76,22 @@ export default function AddWorkoutDataButton({
             }}
             InputProps={{ inputProps: { min: 0 } }}
             sx={innerBoxComponents}
+            onChange={(e) => setWorkoutWeightValue(e.target.value)}
+            value={workoutWeightValue}
           />
 
-          <Button>Submit</Button>
+          <Button
+            onClick={() =>
+              handleAddUserWorkoutData(
+                workoutDateValue,
+                workoutSetValue,
+                workoutRepValue,
+                workoutWeightValue
+              )
+            }
+          >
+            Submit
+          </Button>
         </Box>
       </Modal>
     </div>

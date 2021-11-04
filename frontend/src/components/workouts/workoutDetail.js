@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 
 const WorkoutDetail = ({ workoutData, handleWorkoutDataOpen }) => {
-  console.log(workoutData);
+  //   console.log(workoutData);
   return (
     <div>
       {Object.keys(workoutData).map((key) => {
