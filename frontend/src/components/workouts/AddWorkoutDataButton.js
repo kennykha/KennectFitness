@@ -18,6 +18,18 @@ export default function AddWorkoutDataButton({
   const [workoutRepValue, setWorkoutRepValue] = useState("");
   const [workoutWeightValue, setWorkoutWeightValue] = useState("");
 
+  const resetLocalState = (
+    workoutDateValue,
+    workoutSetValue,
+    workoutRepValue,
+    workoutWeightValue
+  ) => {
+    workoutDateValue({ today });
+    workoutSetValue("");
+    workoutRepValue("");
+    workoutWeightValue("");
+  };
+
   return (
     <div>
       <Button onClick={handleOpen}>+ Add New Workout</Button>
@@ -81,14 +93,20 @@ export default function AddWorkoutDataButton({
           />
 
           <Button
-            onClick={() =>
+            onClick={() => {
               handleAddUserWorkoutData(
                 workoutDateValue,
                 workoutSetValue,
                 workoutRepValue,
                 workoutWeightValue
-              )
-            }
+              );
+              resetLocalState(
+                setWorkoutDateValue,
+                setWorkoutSetValue,
+                setWorkoutRepValue,
+                setWorkoutWeightValue
+              );
+            }}
           >
             Submit
           </Button>

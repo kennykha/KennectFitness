@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUserWorkoutData } from "../actions/users";
+import { getUserWorkoutData, addUserWorkoutData } from "../actions/users";
 import WorkoutDetail from "../components/workouts/workoutDetail";
 import AddWorkoutDataButton from "../components/workouts/AddWorkoutDataButton";
 
@@ -38,6 +38,10 @@ const UserWorkoutDetailPage = (props) => {
 
   const handleAddUserWorkoutData = (date, set, rep, weight) => {
     console.log(date, set, Number(rep), Number(weight));
+    addUserWorkoutData(name, workout, date, set, Number(rep), Number(weight))
+      .then(() => getUserWorkoutData(name, workout))
+      .then((response) => handelWorkoutData(response.data))
+      .catch((err) => console.log(err));
 
     handleClose();
   };
