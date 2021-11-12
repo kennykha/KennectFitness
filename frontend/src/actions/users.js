@@ -40,3 +40,7 @@ export const addUserWorkoutData = (
     }
   );
 };
+
+export const userDeleteWorkoutData = (sqlId) => {
+  return axios.delete(`/deleteWorkout/${sqlId}`);
+};

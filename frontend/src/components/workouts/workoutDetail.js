@@ -1,8 +1,11 @@
 import React from "react";
 import moment from "moment";
 
-const WorkoutDetail = ({ workoutData, handleWorkoutDataOpen }) => {
-  //   console.log(workoutData);
+const WorkoutDetail = ({
+  workoutData,
+  handleWorkoutDataOpen,
+  handleUserDeleteWorkoutData,
+}) => {
   return (
     <div>
       {Object.keys(workoutData).map((key) => {
@@ -41,6 +44,7 @@ const WorkoutDetail = ({ workoutData, handleWorkoutDataOpen }) => {
                       current_set: currentSet,
                       rep_info: repInfo,
                       weight,
+                      id: sqlId,
                     } = data;
                     return (
                       <div
@@ -50,11 +54,20 @@ const WorkoutDetail = ({ workoutData, handleWorkoutDataOpen }) => {
                           justifyContent: "space-between",
                           margin: "5px",
                         }}
+                        id={sqlId}
                       >
                         <div>Date: {moment(workoutDate).format("L")}</div>
                         <div>Set: {currentSet}</div>
                         <div>Reps: {repInfo}</div>
                         <div>Weight: {weight}</div>
+                        <div
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleUserDeleteWorkoutData(sqlId);
+                          }}
+                        >
+                          X
+                        </div>
                       </div>
                     );
                   })}
