@@ -74,6 +74,18 @@ App.post(
   }
 );
 
+App.delete("/deleteWorkout/:id", (req, res) => {
+  const { id: sqlId } = req.params;
+  db.deleteWorkoutData(sqlId, (err, success) => {
+    if (err) {
+      console.log(err);
+      res.status(404).send("Unable to delete workout data");
+    } else {
+      res.status(200).send(success);
+    }
+  });
+});
+
 // App.post("/editWorkoutData", (req, res) => {
 //   const { id, data } = req.body;
 //   db.editWorkout(id, data, (err, success) => {

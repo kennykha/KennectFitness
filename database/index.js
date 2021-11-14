@@ -59,6 +59,20 @@ const getWorkoutData = (name, workoutName, callback) => {
   );
 };
 
+const deleteWorkoutData = (sqlId, callback) => {
+  connection.query(
+    `DELETE FROM WORKOUTS WHERE ID = ${sqlId}`,
+    (err, result) => {
+      if (err) {
+        console.log("Unable to delete workout data");
+        callback(err);
+      } else {
+        callback(null, result);
+      }
+    }
+  );
+};
+
 // const addWorkout = (user, workoutName, data, callback) => {
 //   data.forEach((record) => {
 //     record.sets.forEach((set, idx) => {
@@ -193,6 +207,7 @@ module.exports = {
   getWorkoutData,
   addWorkout,
   addWorkoutData,
+  deleteWorkoutData,
   // editWorkout,
   // editDate,
   // addSet,

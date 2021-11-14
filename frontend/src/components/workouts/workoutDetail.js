@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
+import AddWorkoutSetDataButton from "./AddWorkoutSetDataButton";
 
 const WorkoutDetail = ({
   workoutData,
   handleWorkoutDataOpen,
   handleUserDeleteWorkoutData,
 }) => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <div>
       {Object.keys(workoutData).map((key) => {
@@ -71,17 +76,12 @@ const WorkoutDetail = ({
                       </div>
                     );
                   })}
-                  <h2
-                    style={{
-                      margin: "0",
-                      display: "flex",
-                      justifyContent: "center",
-                      border: "1px solid black",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    +
-                  </h2>
+                  <AddWorkoutSetDataButton
+                    open={open}
+                    handleClose={handleClose}
+                    handleOpen={handleOpen}
+                    date={moment(key).format("yyyy-MM-DD")}
+                  />
                 </div>
               )}
             </div>
