@@ -73,24 +73,6 @@ const deleteWorkoutData = (sqlId, callback) => {
   );
 };
 
-// const addWorkout = (user, workoutName, data, callback) => {
-//   data.forEach((record) => {
-//     record.sets.forEach((set, idx) => {
-//       connection.query(
-//         `INSERT INTO WORKOUTS (user, workout, workoutDate, rep_info, current_set) VALUES ('${user}', '${workoutName}', '${
-//           record.date
-//         }', '${set}', '${idx + 1}')`,
-//         (err) => {
-//           if (err) {
-//             callback(err);
-//           }
-//         }
-//       );
-//     });
-//   });
-//   callback(null, "Successfully added workout to database");
-// };
-
 const addWorkout = (user, workoutName, callback) => {
   connection.query(
     `INSERT INTO WORKOUTS (user, workout) VALUES ('${user}', '${workoutName}')`,
@@ -104,6 +86,7 @@ const addWorkout = (user, workoutName, callback) => {
   callback(null, "Successfully added workout to database");
 };
 
+// Used for set addition as well as first time date addition
 const addWorkoutData = (
   user,
   workoutName,
@@ -128,20 +111,6 @@ const addWorkoutData = (
 // const editWorkout = (id, repInfo, callback) => {
 //   connection.query(
 //     `UPDATE workouts SET rep_info = '${repInfo}' WHERE id = ${id}`,
-//     (err, result) => {
-//       if (err) {
-//         callback(err);
-//       } else {
-//         callback(null, result);
-//       }
-//     }
-//   );
-// };
-
-// const editDate = (user, date, currentWorkout, currentDate, callback) => {
-//   console.log(user, date, currentWorkout, currentDate);
-//   connection.query(
-//     `UPDATE workouts SET workoutDate = '${date}' WHERE user = '${user}' AND workout = '${currentWorkout}' AND workoutDate = '${currentDate}'`,
 //     (err, result) => {
 //       if (err) {
 //         callback(err);
