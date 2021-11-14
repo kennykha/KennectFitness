@@ -62,8 +62,8 @@ const UserWorkoutDetailPage = (props) => {
       <WorkoutDetail
         workoutData={workoutData}
         handleWorkoutDataOpen={handleWorkoutDataOpen}
-        handleUserDeleteWorkoutData={handleUserDeleteWorkoutData}
         handleAddUserWorkoutData={handleAddUserWorkoutData}
+        handleUserDeleteWorkoutData={handleUserDeleteWorkoutData}
       />
       <AddWorkoutDataButton
         open={open}
