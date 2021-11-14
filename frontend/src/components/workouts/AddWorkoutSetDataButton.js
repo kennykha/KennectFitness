@@ -11,27 +11,21 @@ export default function AddWorkoutSetDataButton({
   handleClose,
   handleOpen,
   date,
-  //   handleAddUserWorkoutData,
+  handleAddUserWorkoutData,
 }) {
-  //   const today = moment();
-  //   const [workoutDateValue, setWorkoutDateValue] = useState({ date });
   const [workoutSetValue, setWorkoutSetValue] = useState("");
   const [workoutRepValue, setWorkoutRepValue] = useState("");
   const [workoutWeightValue, setWorkoutWeightValue] = useState("");
 
-  //   const resetLocalState = (
-  //     workoutDateValue,
-  //     workoutSetValue,
-  //     workoutRepValue,
-  //     workoutWeightValue
-  //   ) => {
-  //     workoutDateValue({ today });
-  //     workoutSetValue("");
-  //     workoutRepValue("");
-  //     workoutWeightValue("");
-  //   };
-
-  //   console.log(workoutDateValue.date);
+  const resetLocalState = (
+    workoutSetValue,
+    workoutRepValue,
+    workoutWeightValue
+  ) => {
+    workoutSetValue("");
+    workoutRepValue("");
+    workoutWeightValue("");
+  };
 
   return (
     <div>
@@ -107,27 +101,19 @@ export default function AddWorkoutSetDataButton({
 
           <Button
             onClick={() => {
-              console.log(
+              handleAddUserWorkoutData(
                 date,
                 workoutSetValue,
                 workoutRepValue,
                 workoutWeightValue
               );
+              resetLocalState(
+                setWorkoutSetValue,
+                setWorkoutRepValue,
+                setWorkoutWeightValue
+              );
+              handleClose();
             }}
-            // onClick={() => {
-            //   handleAddUserWorkoutData(
-            //     workoutDateValue,
-            //     workoutSetValue,
-            //     workoutRepValue,
-            //     workoutWeightValue
-            //   );
-            //   resetLocalState(
-            //     setWorkoutDateValue,
-            //     setWorkoutSetValue,
-            //     setWorkoutRepValue,
-            //     setWorkoutWeightValue
-            //   );
-            // }}
           >
             Submit
           </Button>

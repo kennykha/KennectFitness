@@ -6,6 +6,7 @@ const WorkoutDetail = ({
   workoutData,
   handleWorkoutDataOpen,
   handleUserDeleteWorkoutData,
+  handleAddUserWorkoutData,
 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -81,6 +82,7 @@ const WorkoutDetail = ({
                     handleClose={handleClose}
                     handleOpen={handleOpen}
                     date={moment(key).format("yyyy-MM-DD")}
+                    handleAddUserWorkoutData={handleAddUserWorkoutData}
                   />
                 </div>
               )}

@@ -44,21 +44,3 @@ export const addUserWorkoutData = (
 export const userDeleteWorkoutData = (sqlId) => {
   return axios.delete(`/deleteWorkout/${sqlId}`);
 };
-
-export const userAddSetWorkoutData = (
-  name,
-  workoutName,
-  date,
-  set,
-  rep,
-  weight
-) => {
-  return axios.post(`/users/${name}/workouts/addSet/${workoutName}`, {
-    name: name,
-    workoutName: workoutName,
-    date: date,
-    set: set,
-    rep: rep,
-    weight: weight,
-  });
-};

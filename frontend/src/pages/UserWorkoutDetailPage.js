@@ -63,6 +63,7 @@ const UserWorkoutDetailPage = (props) => {
         workoutData={workoutData}
         handleWorkoutDataOpen={handleWorkoutDataOpen}
         handleUserDeleteWorkoutData={handleUserDeleteWorkoutData}
+        handleAddUserWorkoutData={handleAddUserWorkoutData}
       />
       <AddWorkoutDataButton
         open={open}
