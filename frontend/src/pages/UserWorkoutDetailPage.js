@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { getUserWorkoutData } from "../actions/users";
+import {
+  getUserWorkoutData,
+  addUserWorkoutData,
+  userDeleteWorkoutData,
+} from "../actions/users";
 import WorkoutDetail from "../components/workouts/workoutDetail";
+import AddWorkoutDataButton from "../components/workouts/AddWorkoutDataButton";
 
 const UserWorkoutDetailPage = (props) => {
   const [workoutData, handelWorkoutData] = useState([]);
   const { name, workout } = props.match.params;
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     getUserWorkoutData(name, workout)
       .then((response) => {
-        console.log(response);
         handelWorkoutData(response.data);
       })
       .catch((err) => {
@@ -31,7 +38,22 @@ const UserWorkoutDetailPage = (props) => {
     });
 
     handelWorkoutData(newWorkoutData);
-    // console.log("NewWorkoutData:", newWorkoutData);
+  };
+
+  const handleAddUserWorkoutData = (date, set, rep, weight) => {
+    addUserWorkoutData(name, workout, date, set, Number(rep), Number(weight))
+      .then(() => getUserWorkoutData(name, workout))
+      .then((response) => handelWorkoutData(response.data))
+      .catch((err) => console.log(err));
+
+    handleClose();
+  };
+
+  const handleUserDeleteWorkoutData = (sqlId) => {
+    userDeleteWorkoutData(sqlId)
+      .then(() => getUserWorkoutData(name, workout))
+      .then((response) => handelWorkoutData(response.data))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -40,6 +62,14 @@ const UserWorkoutDetailPage = (props) => {
       <WorkoutDetail
         workoutData={workoutData}
         handleWorkoutDataOpen={handleWorkoutDataOpen}
+        handleAddUserWorkoutData={handleAddUserWorkoutData}
+        handleUserDeleteWorkoutData={handleUserDeleteWorkoutData}
+      />
+      <AddWorkoutDataButton
+        open={open}
+        handleClose={handleClose}
+        handleOpen={handleOpen}
+        handleAddUserWorkoutData={handleAddUserWorkoutData}
       />
     </div>
   );

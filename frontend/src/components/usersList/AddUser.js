@@ -3,27 +3,30 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
 import Modal from "@mui/material/Modal";
-// import { addUserWorkout } from "../../actions/users";
-// import Typography from "@mui/material/Typography";
 
-export default function AddWorkoutButton({
+export default function AddUser({
   open,
   handleClose,
   handleOpen,
-  handleAddUserWorkout,
+  handleAddUser,
 }) {
-  const [workoutName, handleWorkoutName] = React.useState("");
+  const [user, setUser] = React.useState("");
 
   return (
     <div>
-      <Button onClick={handleOpen}>Add Workout</Button>
+      <Button onClick={handleOpen}>Add User</Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <Input
-            placeholder="Workout Name"
-            onChange={(e) => handleWorkoutName(e.target.value)}
+            placeholder="User Name"
+            onChange={(e) => setUser(e.target.value)}
           />
-          <Button onClick={() => handleAddUserWorkout(workoutName)}>
+          <Button
+            onClick={() => {
+              handleAddUser(user);
+              setUser("");
+            }}
+          >
             Submit
           </Button>
         </Box>

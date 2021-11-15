@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom";
 
 const WorkoutSummary = ({ workoutNames, user }) => {
-  // console.log(workoutNames);
   return (
     <div>
       {workoutNames.map((workout) => {
