@@ -14,11 +14,9 @@ const WorkoutDetail = ({
 
   return (
     <div>
-      {Object.keys(workoutData).map((key) => {
-        // Need to figure out how to skip if no key
-        if (!key) {
-          return key;
-        } else {
+      {Object.keys(workoutData)
+        .filter((key) => key !== "null")
+        .map((key) => {
           return (
             <div
               key={key}
@@ -88,8 +86,7 @@ const WorkoutDetail = ({
               )}
             </div>
           );
-        }
-      })}
+        })}
     </div>
   );
 };
