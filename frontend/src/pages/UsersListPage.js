@@ -1,24 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { getUsers } from "../actions/users";
+import { getUsers, addUser } from "../actions/users";
 import UsersList from "../components/usersList/UsersList";
-import EditForm from "../components/usersList/EditForm";
+import AddUser from "../components/usersList/AddUser";
 
 export default function UsersPage(props) {
   const [users, setUsers] = useState([]);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     getUsers()
       .then((response) => {
-        console.log("Response from server/db: ", response.data);
         setUsers(response.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
+  const handleAddUser = (name) => {
+    addUser(name)
+      .then(() => getUsers())
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((err) => console.log(err));
+
+    handleClose();
+  };
+
   return (
-    <div className="grid">
+    <div className="grid" style={{ flexDirection: "column", width: "400px" }}>
       <UsersList users={users} />
-      <EditForm setUsers={setUsers} />
+      <AddUser
+        open={open}
+        handleClose={handleClose}
+        handleOpen={handleOpen}
+        handleAddUser={handleAddUser}
+      />
     </div>
   );
 }
