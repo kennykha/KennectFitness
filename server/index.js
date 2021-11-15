@@ -9,7 +9,6 @@ App.get("/", (req, res) => {
 });
 
 App.get("/getUsers", (req, res) => {
-  console.log("Hit getUsers endpoint");
   db.getUsers((err, result) => {
     if (err) {
       res.status(404).send("Cannot retrieve users");
@@ -19,8 +18,7 @@ App.get("/getUsers", (req, res) => {
   });
 });
 
-App.put("/addUser", (req, res) => {
-  console.log(req.body.name);
+App.post("/addUser", (req, res) => {
   db.addUser(req.body.name, (err, success) => {
     if (err) {
       res.status(404).send("Unable to add new user");
@@ -38,8 +36,6 @@ App.put("/addUser", (req, res) => {
 
 App.post("/users/:name/workouts/addWorkout/:workoutName", (req, res) => {
   const { name: user, workoutName } = req.params;
-  console.log("Inside server", user, workoutName);
-  // const { workoutName, data } = workoutData;
   db.addWorkout(user, workoutName, (err, success) => {
     if (err) {
       console.log(err);
@@ -54,7 +50,6 @@ App.post(
   "/users/:name/workouts/addWorkout/:workoutName/workoutData",
   (req, res) => {
     const { name, workoutName, date, set, rep, weight } = req.body;
-    console.log(name, workoutName, date, set, rep, weight);
     db.addWorkoutData(
       name,
       workoutName,
