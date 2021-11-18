@@ -29,14 +29,16 @@ export default function UsersPage(props) {
   };
 
   return (
-    <div className="grid" style={{ flexDirection: "column", width: "400px" }}>
-      <UsersList users={users} />
-      <AddUser
-        open={open}
-        handleClose={handleClose}
-        handleOpen={handleOpen}
-        handleAddUser={handleAddUser}
-      />
-    </div>
+    <>
+      <div className="grid" style={{ flexDirection: "column" }}>
+        <UsersList users={users} />
+        <AddUser
+          open={open}
+          handleClose={handleClose}
+          handleOpen={handleOpen}
+          handleAddUser={handleAddUser}
+        />
+      </div>
+    </>
   );
 }

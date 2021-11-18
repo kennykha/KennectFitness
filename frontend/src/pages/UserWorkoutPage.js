@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getUserWorkoutNames, addUserWorkout } from "../actions/users";
 import AddWorkoutButton from "../components/workouts/AddWorkoutButton";
 import Summary from "../components/workouts/Summary";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const UserWorkoutPage = (props) => {
   const user = props.match.params.name;
@@ -31,6 +33,9 @@ const UserWorkoutPage = (props) => {
 
   return (
     <>
+      <Link to="/" style={{ color: "inherit" }}>
+        <ArrowBackIosIcon sx={style} />
+      </Link>
       <Summary workoutNames={workoutNames} user={user} />
       <AddWorkoutButton
         open={open}
@@ -43,3 +48,12 @@ const UserWorkoutPage = (props) => {
 };
 
 export default UserWorkoutPage;
+
+const style = {
+  position: "absolute",
+  top: "8%",
+  left: "15%",
+  fontSize: "50px",
+  cursor: "pointer",
+  "&:hover": { color: "blue" },
+};
