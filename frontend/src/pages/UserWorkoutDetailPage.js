@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   getUserWorkoutData,
   addUserWorkoutData,
@@ -6,6 +7,7 @@ import {
 } from "../actions/users";
 import WorkoutDetail from "../components/workouts/workoutDetail";
 import AddWorkoutDataButton from "../components/workouts/AddWorkoutDataButton";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const UserWorkoutDetailPage = (props) => {
   const [workoutData, handelWorkoutData] = useState([]);
@@ -58,6 +60,9 @@ const UserWorkoutDetailPage = (props) => {
 
   return (
     <div>
+      <Link to={`/users/${name}`} style={{ color: "inherit" }}>
+        <ArrowBackIosIcon sx={style} />
+      </Link>
       <h2>{workout}</h2>
       <WorkoutDetail
         workoutData={workoutData}
@@ -76,3 +81,12 @@ const UserWorkoutDetailPage = (props) => {
 };
 
 export default UserWorkoutDetailPage;
+
+const style = {
+  position: "absolute",
+  top: "8%",
+  left: "15%",
+  fontSize: "50px",
+  cursor: "pointer",
+  "&:hover": { color: "blue" },
+};

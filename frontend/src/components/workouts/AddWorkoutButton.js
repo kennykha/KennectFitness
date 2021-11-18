@@ -3,8 +3,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
 import Modal from "@mui/material/Modal";
-// import { addUserWorkout } from "../../actions/users";
-// import Typography from "@mui/material/Typography";
 
 export default function AddWorkoutButton({
   open,

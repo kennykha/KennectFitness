@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const WorkoutSummary = ({ workoutNames, user }) => {
   return (
-    <div>
+    <div className="grid">
       {workoutNames.map((workout) => {
         const workoutName = workout.workout;
         return (
